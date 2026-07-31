@@ -1,5 +1,3 @@
-import "server-only";
-
 import { projectKnowledge } from "../../data/projectKnowledge";
 import type { AskSource, ProjectKnowledgeRecord } from "./types";
 

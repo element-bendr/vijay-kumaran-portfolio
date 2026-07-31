@@ -1,11 +1,10 @@
 {
-  "operationType": "Page",
+  "operationType": "API",
   "handler": "projects/node/vijay-kumaran-portfolio/___next_launcher.cjs",
   "runtime": "nodejs24.x",
   "architecture": "x86_64",
   "environment": {},
   "supportsMultiPayloads": true,
-  "supportsResponseStreaming": true,
   "framework": {
     "slug": "nextjs",
     "version": "15.4.6"
@@ -398,6 +397,7 @@
     "projects/node/vijay-kumaran-portfolio/.next/server/chunks/520.js": "projects/node/vijay-kumaran-portfolio/.next/server/chunks/520.js",
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/pages/_document.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/pages/_document.js",
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-page.runtime.prod.js",
+    "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js",
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/server/app-render/action-async-storage-instance.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/server/app-render/action-async-storage-instance.js",
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/server/app-render/action-async-storage.external.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/server/app-render/action-async-storage.external.js",
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/server/app-render/cache-signal.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/server/app-render/cache-signal.js",
@@ -409,12 +409,14 @@
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/shared/lib/page-path/ensure-leading-slash.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/shared/lib/page-path/ensure-leading-slash.js",
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/shared/lib/router/utils/app-paths.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/shared/lib/router/utils/app-paths.js",
     "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/shared/lib/segment.js": "projects/node/node_modules/.pnpm/next@15.4.6_@opentelemetry+api@1.9.1_@playwright+test@1.58.2_react-dom@19.2.0_react@19.2.0__react@19.2.0/node_modules/next/dist/shared/lib/segment.js",
+    "projects/node/vijay-kumaran-portfolio/package.json": "projects/node/vijay-kumaran-portfolio/package.json",
     "projects/node/vijay-kumaran-portfolio/.next/server/chunks/179.js": "projects/node/vijay-kumaran-portfolio/.next/server/chunks/179.js",
-    "projects/node/vijay-kumaran-portfolio/.next/server/chunks/381.js": "projects/node/vijay-kumaran-portfolio/.next/server/chunks/381.js",
-    "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page_client-reference-manifest.js": "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page_client-reference-manifest.js",
-    "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page.js": "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page.js",
+    "projects/node/vijay-kumaran-portfolio/.next/server/app/icon.svg/route.js": "projects/node/vijay-kumaran-portfolio/.next/server/app/icon.svg/route.js",
     "projects/node/vijay-kumaran-portfolio/.next/server/pages/_app.js": "projects/node/vijay-kumaran-portfolio/.next/server/pages/_app.js",
     "projects/node/vijay-kumaran-portfolio/.next/server/pages/_error.js": "projects/node/vijay-kumaran-portfolio/.next/server/pages/_error.js",
-    "projects/node/vijay-kumaran-portfolio/.next/server/pages/_document.js": "projects/node/vijay-kumaran-portfolio/.next/server/pages/_document.js"
+    "projects/node/vijay-kumaran-portfolio/.next/server/pages/_document.js": "projects/node/vijay-kumaran-portfolio/.next/server/pages/_document.js",
+    "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page.js": "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page.js",
+    "projects/node/vijay-kumaran-portfolio/.next/server/chunks/381.js": "projects/node/vijay-kumaran-portfolio/.next/server/chunks/381.js",
+    "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page_client-reference-manifest.js": "projects/node/vijay-kumaran-portfolio/.next/server/app/_not-found/page_client-reference-manifest.js"
   }
 }

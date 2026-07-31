@@ -3,9 +3,9 @@
   "expiration": false,
   "sourcePath": "/",
   "isDynamicRoute": false,
-  "htmlSize": 34752,
-  "group": 3,
-  "bypassToken": "8d89b592ac2e2e87bb1ac93fbd515afb",
+  "htmlSize": 34864,
+  "group": 4,
+  "bypassToken": "f5e04f33dede2bc7011a9e5e84a89473",
   "experimentalBypassFor": [
     {
       "type": "header",

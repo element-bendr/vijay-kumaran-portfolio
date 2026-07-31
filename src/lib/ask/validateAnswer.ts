@@ -1,5 +1,3 @@
-import "server-only";
-
 import { REFUSAL_PHRASE, type ValidationResult } from "./types";
 
 const HALLUCINATION_PATTERNS: Array<[RegExp, string]> = [

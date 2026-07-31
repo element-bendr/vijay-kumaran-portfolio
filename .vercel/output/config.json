@@ -127,7 +127,7 @@
       "handle": "hit"
     },
     {
-      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|WdB5NvxF\\-V_TvEchFcDy8)/.+",
+      "src": "/_next/static/(?:[^/]+/pages|pages|chunks|runtime|css|image|media|4CVtl6_YXnk\\-WVIPp6KU4)/.+",
       "headers": {
         "cache-control": "public,max-age=31536000,immutable"
       },
@@ -223,6 +223,9 @@
     "404.rsc.json": {
       "path": "404.rsc",
       "contentType": "application/json"
+    },
+    "icon.svg": {
+      "contentType": "image/svg+xml"
     },
     "_next/static/not-found.txt": {
       "contentType": "text/plain"

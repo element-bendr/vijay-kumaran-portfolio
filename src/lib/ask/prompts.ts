@@ -1,5 +1,3 @@
-import "server-only";
-
 import type { ProjectKnowledgeRecord } from "./types";
 
 const SYSTEM_PROMPT = [

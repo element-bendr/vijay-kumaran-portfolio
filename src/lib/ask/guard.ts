@@ -1,5 +1,3 @@
-import "server-only";
-
 import type { GuardResult } from "./types";
 
 const MAX_LENGTH = 500;

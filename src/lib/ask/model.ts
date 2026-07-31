@@ -1,5 +1,3 @@
-import "server-only";
-
 import { buildSystemPrompt, buildUserPrompt } from "./prompts";
 
 export class ConfigError extends Error {
