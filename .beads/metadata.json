@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "vijay_kumaran_portfolio",
+  "project_id": "18b31c3a-1c5e-47f6-b8bb-223b2dfe2e38"
+}
