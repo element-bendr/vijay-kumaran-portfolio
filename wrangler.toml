@@ -1,15 +1,7 @@
 name = "vijay-kumaran-portfolio"
-main = ".open-next/worker.js"
 compatibility_date = "2025-01-01"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+pages_build_output_dir = ".vercel/output/static"
 
-[assets]
-directory = ".open-next/assets"
-binding = "ASSETS"
-
-# Ask the Work — all configuration set via wrangler secrets (dashboard or CLI):
-#   AI_PROVIDER_URL — OpenAI-compatible endpoint
-#   AI_PROVIDER_KEY — API key
-#   AI_MODEL — model name
-#
-# Rate limiting: configure via Cloudflare Dashboard > Security > WAF > Rate limiting rules.
+# Build command: npx @cloudflare/next-on-pages
+# Deploy: wrangler pages deploy (configured in Dashboard CI/CD)

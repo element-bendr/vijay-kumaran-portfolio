@@ -1,6 +1,4 @@
 
-export const runtime = "edge";
-
 import { NextResponse } from "next/server";
 import { buildAskCorpus, extractSourcesFromAnswer, getAllowedProjectNames, getAllowedSourceLabels, getRelatedProjectsFromAnswer } from "../../../src/lib/ask/corpus";
 import { guardQuestion } from "../../../src/lib/ask/guard";
