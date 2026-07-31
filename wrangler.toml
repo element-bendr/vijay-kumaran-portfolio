@@ -1,0 +1,28 @@
+name = "vijay-kumaran-portfolio"
+main = ".open-next/worker.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+# Ask the Work — model configuration
+# For DeepSeek or other OpenAI-compatible providers, set these secrets:
+#   wrangler secret put AI_PROVIDER_URL
+#   wrangler secret put AI_PROVIDER_KEY
+#   wrangler secret put AI_MODEL
+#
+# For Cloudflare Workers AI via AI Gateway, set these secrets:
+#   wrangler secret put CLOUDFLARE_ACCOUNT_ID
+#   wrangler secret put AI_GATEWAY_ID
+#   wrangler secret put AI_GATEWAY_TOKEN
+#
+# AI_MODEL can be a secret (overrides the default below) or a plain var.
+
+[vars]
+AI_MODEL = "@cf/meta/llama-3.1-8b-instruct"
+
+# Rate limiting: configure via Cloudflare Dashboard > Security > WAF > Rate limiting rules.
+# Rule: if path starts with /api/ask, block requests exceeding 20 per minute per IP.
+# The API route also has an in-memory rate limiter for defense-in-depth.
