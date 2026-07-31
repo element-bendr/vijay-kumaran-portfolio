@@ -1,0 +1,72 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "VK Vijay Kumaran" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: VK
+        - generic [ref=e6]: Vijay Kumaran
+      - group [ref=e7]:
+        - generic "Menu +" [ref=e8]
+  - main [ref=e9]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: About
+      - heading "Vijay Kumaran" [level=1] [ref=e13]
+      - paragraph [ref=e14]: AI Automation & Web Systems Consultant
+      - paragraph [ref=e15]: I build practical websites, business systems, and AI automations that reduce manual work and run reliably every day.
+      - generic [ref=e16]:
+        - link "Start a conversation" [ref=e17] [cursor=pointer]:
+          - /url: mailto:element.bendr@gmail.com
+        - link "View selected work" [ref=e18] [cursor=pointer]:
+          - /url: /work
+      - paragraph [ref=e19]: Recent work spans Cloudflare-native AI agents, AI memory systems, institutional publishing workflows, and production brand websites.
+      - generic [ref=e20]:
+        - generic [ref=e21]: Mumbai, India / Remote
+        - generic [ref=e22]: Available for selected projects
+    - generic [ref=e24]:
+      - paragraph [ref=e25]: How I work
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: "01"
+          - heading "Clarity first" [level=2] [ref=e29]
+          - paragraph [ref=e30]: I start by understanding the real problem, goals, and constraints. Simple scope. Clear outcomes.
+        - generic [ref=e31]:
+          - generic [ref=e32]: "02"
+          - heading "Reliable systems" [level=2] [ref=e33]
+          - paragraph [ref=e34]: I build systems that are secure, tested, and designed to handle real-world usage.
+        - generic [ref=e35]:
+          - generic [ref=e36]: "03"
+          - heading "Traceable automation" [level=2] [ref=e37]
+          - paragraph [ref=e38]: Automations should be observable and accountable. I design workflows that are transparent and easy to trust.
+        - generic [ref=e39]:
+          - generic [ref=e40]: "04"
+          - heading "Maintainable delivery" [level=2] [ref=e41]
+          - paragraph [ref=e42]: Clean code, documentation, and thoughtful handover so the system can keep working after launch.
+    - generic [ref=e44]:
+      - paragraph [ref=e45]: Working stack
+      - heading "Modern, fast, secure." [level=2] [ref=e46]: Modern, fast,secure.
+      - generic [ref=e47]:
+        - generic [ref=e48]: Next.js
+        - generic [ref=e49]: TypeScript
+        - generic [ref=e50]: Tailwind CSS
+        - generic [ref=e51]: Cloudflare
+        - generic [ref=e52]: D1/R2
+        - generic [ref=e53]: Durable Objects
+        - generic [ref=e54]: Postgres
+        - generic [ref=e55]: pgvector
+        - generic [ref=e56]: AI Workflows
+        - generic [ref=e57]: GitHub
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - paragraph [ref=e61]: Contact
+        - heading "Start a conversation." [level=2] [ref=e62]: Start aconversation.
+        - link "element.bendr@gmail.com" [ref=e63] [cursor=pointer]:
+          - /url: mailto:element.bendr@gmail.com
+      - link "Send an email ↗" [ref=e64] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - contentinfo [ref=e65]:
+    - generic [ref=e66]:
+      - generic [ref=e67]: Vijay Kumaran / Mumbai, India
+      - generic [ref=e68]: Cloudflare Workers / OpenNext
+      - link "element.bendr@gmail.com" [ref=e69] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - alert [ref=e70]

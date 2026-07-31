@@ -1,0 +1,114 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - link "VK Vijay Kumaran" [ref=f5e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f5e5]: VK
+        - generic [ref=f5e7]: Vijay Kumaran
+      - navigation [ref=f5e8]:
+        - link "Work" [ref=f5e9] [cursor=pointer]:
+          - /url: /work
+        - link "Services" [ref=f5e10] [cursor=pointer]:
+          - /url: /services
+        - link "About" [ref=f5e11] [cursor=pointer]:
+          - /url: /about
+        - link "Approach" [ref=f5e12] [cursor=pointer]:
+          - /url: /about#approach
+        - link "Contact" [ref=f5e13] [cursor=pointer]:
+          - /url: /about#contact
+        - link "Book an audit" [ref=f5e14] [cursor=pointer]:
+          - /url: /about
+          - text: Book an audit
+          - generic [ref=f5e15]: ↗
+  - main [ref=f5e16]:
+    - generic [ref=f5e18]:
+      - paragraph [ref=f5e20]: AI Automation & Web Systems Consultant
+      - heading "Websites. Business systems. AI automations." [level=1] [ref=f5e22]: Websites.Business systems.AI automations.
+      - generic [ref=f5e23]:
+        - paragraph [ref=f5e25]: Built to reduce manual work.
+        - paragraph [ref=f5e27]: I build practical web systems, admin workflows, and AI automations that run reliably every day.
+        - generic [ref=f5e29]:
+          - link "View case studies" [ref=f5e30] [cursor=pointer]:
+            - /url: /work
+          - link "Book an audit" [ref=f5e31] [cursor=pointer]:
+            - /url: /about
+        - paragraph [ref=f5e33]: Proof across Cloudflare agents, AI memory systems, institutional publishing, and production websites.
+    - generic [ref=f5e35]:
+      - paragraph [ref=f5e36]: What I build
+      - generic [ref=f5e37]:
+        - generic [ref=f5e38]:
+          - text: "01"
+          - heading "Websites" [level=2] [ref=f5e39]
+          - paragraph [ref=f5e40]: Fast, secure, and maintainable websites built for clarity and conversion.
+        - generic [ref=f5e41]:
+          - text: "02"
+          - heading "Business Systems" [level=2] [ref=f5e42]
+          - paragraph [ref=f5e43]: Custom admin systems and workflows that streamline operations and scale.
+        - generic [ref=f5e44]:
+          - text: "03"
+          - heading "AI Automations" [level=2] [ref=f5e45]
+          - paragraph [ref=f5e46]: Practical automations that save time, reduce errors, and keep things moving.
+    - generic [ref=f5e48]:
+      - generic [ref=f5e49]:
+        - generic [ref=f5e50]:
+          - paragraph [ref=f5e51]: Selected work
+          - heading "Systems in the real world." [level=2] [ref=f5e52]: Systems in thereal world.
+        - link "View all work" [ref=f5e53] [cursor=pointer]:
+          - /url: /work
+          - text: View all work
+          - generic [ref=f5e54]: ↗
+      - generic [ref=f5e55]:
+        - 'link "Intelligence system 01 newsharness ↗ Cloudflare-native daily intelligence system for collection, clustering, enrichment, drafts, publishing, and traceable reporting. What this proves: Cloudflare Agents · Durable Objects · D1 · R2 · Workers AI · Evals" [ref=f5e57] [cursor=pointer]':
+          - /url: /work/newsharness
+          - generic [ref=f5e58]:
+            - generic [ref=f5e59]: Intelligence system
+            - generic [ref=f5e60]: "01"
+          - heading "newsharness ↗" [level=3] [ref=f5e63]
+          - paragraph [ref=f5e64]: Cloudflare-native daily intelligence system for collection, clustering, enrichment, drafts, publishing, and traceable reporting.
+          - paragraph [ref=f5e65]: "What this proves: Cloudflare Agents · Durable Objects · D1 · R2 · Workers AI · Evals"
+        - 'link "Agent memory 02 memory-os ↗ Governed AI coding-agent memory system for project knowledge, task state, retrieval, and evidence-based handoffs. What this proves: Git-reviewed Markdown · GBrain · Postgres/pgvector · Beads · Skills" [ref=f5e67] [cursor=pointer]':
+          - /url: /work#memory-os
+          - generic [ref=f5e68]:
+            - generic [ref=f5e69]: Agent memory
+            - generic [ref=f5e70]: "02"
+          - heading "memory-os ↗" [level=3] [ref=f5e76]
+          - paragraph [ref=f5e77]: Governed AI coding-agent memory system for project knowledge, task state, retrieval, and evidence-based handoffs.
+          - paragraph [ref=f5e78]: "What this proves: Git-reviewed Markdown · GBrain · Postgres/pgvector · Beads · Skills"
+        - 'link "Publishing system 03 KPDC / Trifecta ↗ Multi-site institutional publishing system with public websites, private admin app, notices, PDFs, galleries, and staff workflows. What this proves: Next.js · Cloudflare Pages · R2 · Admin Workflows · Monorepo" [ref=f5e80] [cursor=pointer]':
+          - /url: /work#kpdc-trifecta
+          - generic [ref=f5e81]:
+            - generic [ref=f5e82]: Publishing system
+            - generic [ref=f5e83]: "03"
+          - heading "KPDC / Trifecta ↗" [level=3] [ref=f5e86]
+          - paragraph [ref=f5e87]: Multi-site institutional publishing system with public websites, private admin app, notices, PDFs, galleries, and staff workflows.
+          - paragraph [ref=f5e88]: "What this proves: Next.js · Cloudflare Pages · R2 · Admin Workflows · Monorepo"
+        - 'link "Brand website 04 SteelMade ↗ Production furniture brand website focused on product/category discovery, brand presentation, and enquiry generation. What this proves: Next.js · Cloudinary · Netlify · Cloudflare" [ref=f5e90] [cursor=pointer]':
+          - /url: /work#steelmade
+          - generic [ref=f5e91]:
+            - generic [ref=f5e92]: Brand website
+            - generic [ref=f5e93]: "04"
+          - heading "SteelMade ↗" [level=3] [ref=f5e97]
+          - paragraph [ref=f5e98]: Production furniture brand website focused on product/category discovery, brand presentation, and enquiry generation.
+          - paragraph [ref=f5e99]: "What this proves: Next.js · Cloudinary · Netlify · Cloudflare"
+    - generic [ref=f5e102]:
+      - paragraph [ref=f5e104]: Coming after the frontend is live.
+      - heading "Ask about the work." [level=2] [ref=f5e106]
+      - paragraph [ref=f5e108]: A future project Q&A layer will answer focused questions about these projects using indexed GitHub case studies and project documentation only.
+      - generic [ref=f5e109]:
+        - generic [ref=f5e110]: What proves AI automation experience?
+        - generic [ref=f5e111]: Explain newsharness simply.
+        - generic [ref=f5e112]: Which project proves client delivery?
+        - generic [ref=f5e113]: What does memory-os show?
+      - generic [ref=f5e115]:
+        - text: Ask the work
+        - generic [ref=f5e116]: Coming in Phase 2
+    - generic [ref=f5e118]:
+      - heading "Need a cleaner workflow or stronger website?" [level=2] [ref=f5e120]
+      - link "Book an audit" [ref=f5e122] [cursor=pointer]:
+        - /url: /about
+  - contentinfo [ref=f5e123]:
+    - generic [ref=f5e124]:
+      - generic [ref=f5e125]: Vijay Kumaran / Mumbai, India
+      - generic [ref=f5e126]: Cloudflare Workers / OpenNext
+      - link "element.bendr@gmail.com" [ref=f5e127] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com

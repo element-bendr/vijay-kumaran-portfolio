@@ -1,0 +1,106 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "VKVijay Kumaran" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e5]:
+        - link "Work" [ref=e6] [cursor=pointer]:
+          - /url: /work
+        - link "Services" [ref=e7] [cursor=pointer]:
+          - /url: /services
+        - link "About" [ref=e8] [cursor=pointer]:
+          - /url: /about
+        - link "Approach" [ref=e9] [cursor=pointer]:
+          - /url: /about#approach
+        - link "Contact" [ref=e10] [cursor=pointer]:
+          - /url: /about#contact
+        - link "Book an audit ↗" [ref=e11] [cursor=pointer]:
+          - /url: /about
+      - group [ref=e12]:
+        - generic "Menu +" [ref=e13]
+  - main [ref=e14]:
+    - generic [ref=e16]:
+      - paragraph [ref=e17]: Case study / 01
+      - heading "Cloudflare Daily News Intelligence Agent" [level=1] [ref=e18]: Cloudflare DailyNews Intelligence Agent
+      - paragraph [ref=e19]: A Cloudflare-native intelligence system for scheduled collection, provider observability, story clustering, D1/R2 storage, article extraction, drafts, publishing, and traceable reporting.
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Type
+          - paragraph [ref=e23]: AI intelligence system
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: Platform
+          - paragraph [ref=e26]: Cloudflare
+        - generic [ref=e27]:
+          - paragraph [ref=e28]: Status
+          - paragraph [ref=e29]: Built MVP / Cloudflare-native system
+        - generic [ref=e30]:
+          - paragraph [ref=e31]: Stack
+          - paragraph [ref=e32]: Agents SDK · Durable Objects · D1 · R2
+      - generic [ref=e33]: Cloudflare Agents SDKDurable ObjectsD1R2Workers AIEvals
+    - generic [ref=e35]:
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - paragraph [ref=e38]: Overview
+          - paragraph [ref=e39]: newsharness is a Cloudflare-native agent that discovers, curates, and delivers daily news intelligence.
+        - paragraph [ref=e40]: It orchestrates end-to-end pipelines using Cloudflare primitives with observability and traceability at each step.
+      - generic [ref=e41]:
+        - paragraph [ref=e42]: System architecture
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - generic [ref=e45]: "01"
+            - paragraph [ref=e46]: Sources
+          - generic [ref=e47]:
+            - generic [ref=e48]: "02"
+            - paragraph [ref=e49]: Provider normalization
+          - generic [ref=e50]:
+            - generic [ref=e51]: "03"
+            - paragraph [ref=e52]: Story clustering
+          - generic [ref=e53]:
+            - generic [ref=e54]: "04"
+            - paragraph [ref=e55]: Extraction + enrichment
+          - generic [ref=e56]:
+            - generic [ref=e57]: "05"
+            - paragraph [ref=e58]: Drafts + publishing
+          - generic [ref=e59]:
+            - generic [ref=e60]: "06"
+            - paragraph [ref=e61]: D1 analytics + R2 artifacts
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - paragraph [ref=e64]: Problem
+          - paragraph [ref=e65]: News is fragmented, noisy, and fast-moving. Manual aggregation and publishing do not scale.
+        - generic [ref=e66]:
+          - paragraph [ref=e67]: What it does
+          - list [ref=e68]:
+            - listitem [ref=e69]: Schedules and runs collection across multiple news providers
+            - listitem [ref=e70]: Normalizes and deduplicates stories
+            - listitem [ref=e71]: Clusters similar stories
+            - listitem [ref=e72]: Extracts article content and enriches metadata
+            - listitem [ref=e73]: Creates publication-ready drafts
+            - listitem [ref=e74]: Supports publishing workflows
+            - listitem [ref=e75]: Stores analytics in D1 and artifacts in R2
+      - generic [ref=e76]:
+        - generic [ref=e77]:
+          - paragraph [ref=e78]: What this proves
+          - list [ref=e79]:
+            - listitem [ref=e80]: Cloudflare Agents can orchestrate practical content pipelines.
+            - listitem [ref=e81]: D1/R2/Durable Objects can support inspectable AI workflows.
+            - listitem [ref=e82]: AI-assisted reporting should be observable and traceable.
+            - listitem [ref=e83]: Separation of concerns improves reliability and maintainability.
+        - generic [ref=e84]:
+          - paragraph [ref=e85]: Next improvements
+          - list [ref=e86]:
+            - listitem [ref=e87]: Richer evals
+            - listitem [ref=e88]: Better personalization
+            - listitem [ref=e89]: Public Ask the Work integration
+            - listitem [ref=e90]: Stronger reviewer workflow
+            - listitem [ref=e91]: Source credibility scoring
+    - generic [ref=e93]:
+      - heading "Want to build something inspectable?" [level=2] [ref=e94]
+      - link "Book an audit ↗" [ref=e95] [cursor=pointer]:
+        - /url: /about
+  - contentinfo [ref=e96]:
+    - generic [ref=e97]:
+      - text: Vijay Kumaran / Mumbai, IndiaCloudflare Workers / OpenNext
+      - link "element.bendr@gmail.com" [ref=e98] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - alert [ref=e99]

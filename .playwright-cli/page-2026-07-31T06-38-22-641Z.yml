@@ -1,0 +1,83 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "VK Vijay Kumaran" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: VK
+        - generic [ref=e7]: Vijay Kumaran
+      - navigation [ref=e8]:
+        - link "Work" [ref=e9] [cursor=pointer]:
+          - /url: /work
+        - link "Services" [ref=e10] [cursor=pointer]:
+          - /url: /services
+        - link "About" [ref=e11] [cursor=pointer]:
+          - /url: /about
+        - link "Approach" [ref=e12] [cursor=pointer]:
+          - /url: /about#approach
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: /about#contact
+        - link "Book an audit ↗" [ref=e14] [cursor=pointer]:
+          - /url: /about
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - paragraph [ref=e18]: About
+      - heading "Vijay Kumaran" [level=1] [ref=e19]
+      - paragraph [ref=e20]: AI Automation & Web Systems Consultant
+      - paragraph [ref=e21]: I build practical websites, business systems, and AI automations that reduce manual work and run reliably every day.
+      - generic [ref=e22]:
+        - link "Start a conversation" [ref=e23] [cursor=pointer]:
+          - /url: mailto:element.bendr@gmail.com
+        - link "View selected work" [ref=e24] [cursor=pointer]:
+          - /url: /work
+      - paragraph [ref=e25]: Recent work spans Cloudflare-native AI agents, AI memory systems, institutional publishing workflows, and production brand websites.
+      - generic [ref=e26]:
+        - generic [ref=e27]: Mumbai, India / Remote
+        - generic [ref=e28]: Available for selected projects
+    - generic [ref=e30]:
+      - paragraph [ref=e31]: How I work
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]: "01"
+          - heading "Clarity first" [level=2] [ref=e35]
+          - paragraph [ref=e36]: I start by understanding the real problem, goals, and constraints. Simple scope. Clear outcomes.
+        - generic [ref=e37]:
+          - generic [ref=e38]: "02"
+          - heading "Reliable systems" [level=2] [ref=e39]
+          - paragraph [ref=e40]: I build systems that are secure, tested, and designed to handle real-world usage.
+        - generic [ref=e41]:
+          - generic [ref=e42]: "03"
+          - heading "Traceable automation" [level=2] [ref=e43]
+          - paragraph [ref=e44]: Automations should be observable and accountable. I design workflows that are transparent and easy to trust.
+        - generic [ref=e45]:
+          - generic [ref=e46]: "04"
+          - heading "Maintainable delivery" [level=2] [ref=e47]
+          - paragraph [ref=e48]: Clean code, documentation, and thoughtful handover so the system can keep working after launch.
+    - generic [ref=e50]:
+      - paragraph [ref=e51]: Working stack
+      - heading "Modern, fast, secure." [level=2] [ref=e52]: Modern, fast,secure.
+      - generic [ref=e53]:
+        - generic [ref=e54]: Next.js
+        - generic [ref=e55]: TypeScript
+        - generic [ref=e56]: Tailwind CSS
+        - generic [ref=e57]: Cloudflare
+        - generic [ref=e58]: D1/R2
+        - generic [ref=e59]: Durable Objects
+        - generic [ref=e60]: Postgres
+        - generic [ref=e61]: pgvector
+        - generic [ref=e62]: AI Workflows
+        - generic [ref=e63]: GitHub
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - paragraph [ref=e67]: Contact
+        - heading "Start a conversation." [level=2] [ref=e68]: Start aconversation.
+        - link "element.bendr@gmail.com" [ref=e69] [cursor=pointer]:
+          - /url: mailto:element.bendr@gmail.com
+      - link "Send an email ↗" [ref=e70] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - contentinfo [ref=e71]:
+    - generic [ref=e72]:
+      - generic [ref=e73]: Vijay Kumaran / Mumbai, India
+      - generic [ref=e74]: Cloudflare Workers / OpenNext
+      - link "element.bendr@gmail.com" [ref=e75] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - alert [ref=e76]

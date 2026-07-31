@@ -1,0 +1,121 @@
+Audit and tighten the Quiet Systems frontend.
+
+Current issue:
+The design direction is correct, but the pages are too sparse and hero sections are too tall. Desktop navigation also appears collapsed into a minimal Menu state.
+
+Fix priorities:
+
+1. Header
+
+- Show full desktop navigation at >= 900px.
+- Use compact logo text: VK + Vijay Kumaran.
+- Nav items: Work, Services, About, Approach, Contact.
+- CTA: Book an audit.
+- Show Menu only on mobile/tablet.
+- Remove the lone abstract slash as the primary desktop header identity.
+
+2. Homepage hero
+
+- Reduce hero vertical height so the next section peeks into the first viewport on 1440x1000.
+- Keep dark navy grid background.
+- Keep headline:
+  Websites. Business systems. AI automations.
+- Keep subheading:
+  Built to reduce manual work.
+- Move supporting copy and CTAs under the headline on the left.
+- Use normal case button labels:
+  View case studies
+  Book an audit
+- Add a quiet proof line:
+  Proof across Cloudflare agents, AI memory systems, institutional publishing, and production websites.
+
+3. Typography
+
+- Reduce oversized hero/page headings by 10–15%.
+- Use clamp-based font sizing.
+- Preserve serif heading style but improve scanability.
+- Keep body text readable at 16–18px.
+
+4. Section spacing
+
+- Reduce section vertical padding.
+- Avoid giant empty gaps.
+- Make the first content section visible earlier.
+- Use max-width containers consistently.
+
+5. Homepage content
+
+- Ensure the three capability cards are visible without excessive scrolling.
+- Keep only:
+  Websites
+  Business Systems
+  AI Automations
+- Keep featured work to four projects:
+  newsharness
+  memory-os
+  KPDC / Trifecta
+  SteelMade
+
+6. Work page
+
+- Reduce hero height.
+- Make project rows more compact and readable.
+- Strengthen project row click affordance.
+- Make category and “What this proves” readable, not tiny decorative text.
+- Do not add fake metrics or fake screenshots.
+
+7. newsharness page
+
+- Reduce hero height.
+- Add compact factual project facts:
+  Type: AI intelligence system
+  Platform: Cloudflare
+  Status: Built MVP / Cloudflare-native system
+  Stack: Agents SDK · Durable Objects · D1 · R2
+- Bring overview and architecture content higher.
+- Do not add fake metrics, fake testimonial, or fake team size.
+
+8. Services page
+
+- Reduce hero height.
+- Bring service cards higher.
+- Make cards slightly more compact.
+- Keep four services:
+  Website Systems
+  Business Systems
+  AI Automation Systems
+  Workflow Audit
+- Add short intro line:
+  Choose the system you need built, cleaned up, or automated.
+
+9. About page
+
+- Reduce hero height.
+- Add visible CTA buttons:
+  Start a conversation
+  View selected work
+- Add credibility line:
+  Recent work spans Cloudflare-native AI agents, AI memory systems, institutional publishing workflows, and production brand websites.
+- Keep contact simple.
+
+10. Visual consistency
+
+- Keep dark hero + off-white sections.
+- Keep cyan/blue accent.
+- No stock photos.
+- No fake metrics.
+- No decorative dashboard overload.
+- No animated particles.
+- No 3D cubes.
+
+Run:
+npm run lint
+npm run build
+
+Then regenerate screenshots for:
+/
+/work
+/work/newsharness
+/services
+/about
+at 1440x1000.

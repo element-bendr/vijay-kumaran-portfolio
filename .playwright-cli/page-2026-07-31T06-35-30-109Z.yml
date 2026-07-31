@@ -1,0 +1,96 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "VK Vijay Kumaran" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: VK
+        - generic [ref=e6]: Vijay Kumaran
+      - group [ref=e7]:
+        - generic "Menu +" [ref=e8]
+  - main [ref=e9]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: Selected work
+      - heading "Real systems, practical outcomes." [level=1] [ref=e13]: Real systems,practical outcomes.
+      - paragraph [ref=e14]: Traceable delivery across websites, business systems, and AI automation.
+    - generic [ref=e16]:
+      - article [ref=e17]:
+        - generic [ref=e18]: "01"
+        - generic [ref=e19]:
+          - heading "newsharness" [level=2] [ref=e20]
+          - paragraph [ref=e21]: Intelligence system
+        - generic [ref=e22]:
+          - paragraph [ref=e23]: Cloudflare-native daily intelligence system for collection, clustering, enrichment, drafts, publishing, and traceable reporting.
+          - paragraph [ref=e24]: "What this proves: Cloudflare Agents · Durable Objects · D1 · R2 · Workers AI · Evals"
+        - link "Read ↗" [ref=e26] [cursor=pointer]:
+          - /url: /work/newsharness
+      - article [ref=e27]:
+        - generic [ref=e28]: "02"
+        - generic [ref=e29]:
+          - heading "memory-os" [level=2] [ref=e30]
+          - paragraph [ref=e31]: Agent memory
+        - generic [ref=e32]:
+          - paragraph [ref=e33]: Governed AI coding-agent memory system for project knowledge, task state, retrieval, and evidence-based handoffs.
+          - paragraph [ref=e34]: "What this proves: Git-reviewed Markdown · GBrain · Postgres/pgvector · Beads · Skills"
+        - link "Read ↗" [ref=e36] [cursor=pointer]:
+          - /url: /work#memory-os
+      - article [ref=e37]:
+        - generic [ref=e38]: "03"
+        - generic [ref=e39]:
+          - heading "KPDC / Trifecta" [level=2] [ref=e40]
+          - paragraph [ref=e41]: Publishing system
+        - generic [ref=e42]:
+          - paragraph [ref=e43]: Multi-site institutional publishing system with public websites, private admin app, notices, PDFs, galleries, and staff workflows.
+          - paragraph [ref=e44]: "What this proves: Next.js · Cloudflare Pages · R2 · Admin Workflows · Monorepo"
+        - link "Read ↗" [ref=e46] [cursor=pointer]:
+          - /url: /work#kpdc-trifecta
+      - article [ref=e47]:
+        - generic [ref=e48]: "04"
+        - generic [ref=e49]:
+          - heading "SteelMade" [level=2] [ref=e50]
+          - paragraph [ref=e51]: Brand website
+        - generic [ref=e52]:
+          - paragraph [ref=e53]: Production furniture brand website focused on product/category discovery, brand presentation, and enquiry generation.
+          - paragraph [ref=e54]: "What this proves: Next.js · Cloudinary · Netlify · Cloudflare"
+        - link "Open ↗" [ref=e56] [cursor=pointer]:
+          - /url: https://github.com/element-bendr/steelmade-cloudiary
+      - article [ref=e57]:
+        - generic [ref=e58]: "05"
+        - generic [ref=e59]:
+          - heading "ChronoQuill" [level=2] [ref=e60]
+          - paragraph [ref=e61]: Publishing automation
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: WhatsApp publishing automation built for repeatable, reviewable content delivery.
+          - paragraph [ref=e64]: "What this proves: Automation · Publishing workflows · Cloud services"
+        - link "Open ↗" [ref=e66] [cursor=pointer]:
+          - /url: https://github.com/element-bendr/chronoquill
+      - article [ref=e67]:
+        - generic [ref=e68]: "06"
+        - generic [ref=e69]:
+          - heading "ArtSports Content OS" [level=2] [ref=e70]
+          - paragraph [ref=e71]: Content operations
+        - generic [ref=e72]:
+          - paragraph [ref=e73]: Structured content automation for a multi-channel sports and arts publishing workflow.
+          - paragraph [ref=e74]: "What this proves: Structured content · Review workflows · Automation"
+        - link "Open ↗" [ref=e76] [cursor=pointer]:
+          - /url: https://github.com/element-bendr/ai-automation-case-studies
+      - article [ref=e77]:
+        - generic [ref=e78]: "07"
+        - generic [ref=e79]:
+          - heading "Mnemos" [level=2] [ref=e80]
+          - paragraph [ref=e81]: Knowledge system
+        - generic [ref=e82]:
+          - paragraph [ref=e83]: A practical knowledge system for durable project context and evidence-rich handoffs.
+          - paragraph [ref=e84]: "What this proves: Memory OS · Postgres · Retrieval · Review control"
+        - link "Read ↗" [ref=e86] [cursor=pointer]:
+          - /url: /work#mnemos
+    - generic [ref=e88]:
+      - heading "Need a system that keeps working?" [level=2] [ref=e89]
+      - link "Book an audit ↗" [ref=e90] [cursor=pointer]:
+        - /url: /about
+  - contentinfo [ref=e91]:
+    - generic [ref=e92]:
+      - generic [ref=e93]: Vijay Kumaran / Mumbai, India
+      - generic [ref=e94]: Cloudflare Workers / OpenNext
+      - link "element.bendr@gmail.com" [ref=e95] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - alert [ref=e96]

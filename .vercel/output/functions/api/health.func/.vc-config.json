@@ -1,0 +1,18 @@
+{
+  "runtime": "edge",
+  "name": "api/health",
+  "deploymentTarget": "v8-worker",
+  "entrypoint": "index.js",
+  "assets": [],
+  "framework": {
+    "slug": "nextjs",
+    "version": "15.4.6"
+  },
+  "environment": {
+    "__NEXT_BUILD_ID": "WdB5NvxF-V_TvEchFcDy8",
+    "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "Oto+psCIxeSQfMFfDmiZR1TIz7LaE6VHNxDAdgizbb0=",
+    "__NEXT_PREVIEW_MODE_ID": "8d89b592ac2e2e87bb1ac93fbd515afb",
+    "__NEXT_PREVIEW_MODE_SIGNING_KEY": "90b4cf616d44933aa73587e883e0922ac2a33b53ad349c984cb1dd146695e5cf",
+    "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "3e67aa9071a90ce778d7e03462507e110dff4a517798249bd36cd02245935c13"
+  }
+}

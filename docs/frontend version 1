@@ -1,0 +1,471 @@
+You are Codex building the frontend for Vijay Kumaran’s public profile website.
+
+Build this in the repository:
+
+element-bendr/vijay-kumaran-portfolio
+
+Branch:
+
+frontend-nextjs-quiet-systems-v1
+
+Goal:
+
+Build a modern minimalist public consultant website using Next.js, TypeScript, Tailwind CSS, and Cloudflare Workers/OpenNext deployment.
+
+Positioning:
+
+Vijay Kumaran is an AI Automation & Web Systems Consultant.
+
+Core message:
+
+I build practical websites, business systems, and AI automations that reduce manual work and run reliably every day.
+
+Design language:
+
+Quiet Systems.
+
+The site should feel calm, premium, modern, technical, trustworthy, and easy to scan.
+
+Frontend-only scope:
+
+Build the static frontend first.
+
+Do not build:
+
+- RAG backend
+- /api/ask
+- D1
+- R2
+- Vectorize
+- AI Gateway
+- Workers AI integration
+- GitHub ingestion
+
+Add only a static placeholder/teaser for the future “Ask the Work” feature.
+
+Pages to build:
+
+1. /
+   Home
+
+2. /work
+   Selected Work
+
+3. /work/newsharness
+   Case Study: newsharness
+
+4. /services
+   Services
+
+5. /about
+   About + Contact
+
+Navigation:
+
+- Work
+- Services
+- About
+- Approach
+- Contact
+- Book an audit
+
+Visual style:
+
+- dark navy / graphite hero sections
+- off-white content sections
+- electric blue / cyan accent
+- large editorial typography
+- generous whitespace
+- subtle system-line motifs
+- minimal icons
+- refined project cards
+- calm transitions
+- no visual clutter
+- no fake metrics
+- no fake company names
+- no fake client quotes
+- no stock photos
+- no dense dashboards
+- no 3D cubes
+- no animated particles
+
+Design tokens:
+
+--bg-dark: #050B14
+--bg-dark-soft: #08111F
+--surface-dark: #0E1726
+--bg-light: #F7F8FA
+--text-dark: #0B1220
+--text-light: #F5F7FA
+--text-muted-dark: #A7B0C0
+--text-muted-light: #5D6675
+--accent-blue: #2563EB
+--accent-cyan: #22D3EE
+--border-dark: rgba(255,255,255,0.12)
+--border-light: rgba(11,18,32,0.12)
+
+Typography:
+
+- Use a refined serif or display font for major headings.
+- Use Inter, Geist, or clean system sans for body/UI.
+- Use small uppercase labels sparingly.
+- Keep copy readable and sparse.
+
+Suggested file structure:
+
+src/
+app/
+page.tsx
+layout.tsx
+globals.css
+work/
+page.tsx
+newsharness/
+page.tsx
+services/
+page.tsx
+about/
+page.tsx
+
+components/
+Header.tsx
+Footer.tsx
+SectionLabel.tsx
+Hero.tsx
+CapabilityCard.tsx
+ProjectCard.tsx
+WorkGrid.tsx
+StackStrip.tsx
+AuditCTA.tsx
+AskTheWorkTeaser.tsx
+SystemLines.tsx
+
+data/
+projects.ts
+services.ts
+stack.ts
+
+lib/
+constants.ts
+
+Homepage copy:
+
+Hero headline:
+
+Websites. Business systems. AI automations.
+
+Subheading:
+
+Built to reduce manual work.
+
+Supporting copy:
+
+I build practical web systems, admin workflows, and AI automations that run reliably every day.
+
+Primary CTA:
+
+View case studies
+
+Secondary CTA:
+
+Book an audit
+
+Capabilities:
+
+1. Websites
+   Fast, secure, and maintainable websites built for clarity and conversion.
+
+2. Business Systems
+   Custom admin systems and workflows that streamline operations and scale.
+
+3. AI Automations
+   Practical automations that save time, reduce errors, and keep things moving.
+
+Featured Work heading:
+
+Systems in the real world.
+
+Homepage featured projects:
+
+1. newsharness
+   Description:
+   Cloudflare-native daily intelligence system for collection, clustering, enrichment, drafts, publishing, and traceable reporting.
+   Proof:
+   Cloudflare Agents · Durable Objects · D1 · R2 · Workers AI · Evals
+
+2. memory-os
+   Description:
+   Governed AI coding-agent memory system for project knowledge, task state, retrieval, and evidence-based handoffs.
+   Proof:
+   Git-reviewed Markdown · GBrain · Postgres/pgvector · Beads · Skills
+
+3. KPDC / Trifecta
+   Description:
+   Multi-site institutional publishing system with public websites, private admin app, notices, PDFs, galleries, and staff workflows.
+   Proof:
+   Next.js · Cloudflare Pages · R2 · Admin Workflows · Monorepo
+
+4. SteelMade
+   Description:
+   Production furniture brand website focused on product/category discovery, brand presentation, and enquiry generation.
+   Proof:
+   Next.js · Cloudinary · Netlify · Cloudflare
+
+Stack strip:
+
+Modern, fast, secure. Cloudflare ready.
+
+Chips:
+
+Next.js, TypeScript, Tailwind CSS, Cloudflare, Workers, D1, R2, Durable Objects, Postgres, pgvector
+
+Ask the Work teaser:
+
+Title:
+
+Ask about the work
+
+Copy:
+
+A future project Q&A layer will answer focused questions about these projects using indexed GitHub case studies and project documentation only.
+
+Suggested disabled chips:
+
+- What proves AI automation experience?
+- Explain newsharness simply.
+- Which project proves client delivery?
+- What does memory-os show?
+
+Show a disabled input or non-functional placeholder.
+
+Label:
+
+Coming after the frontend is live.
+
+/work page:
+
+Title:
+
+Selected Work
+
+Subtitle:
+
+Real systems, practical outcomes, traceable delivery.
+
+Show projects:
+
+- newsharness
+- memory-os
+- KPDC / Trifecta
+- SteelMade
+- ChronoQuill
+- ArtSports Content OS
+- Mnemos
+
+Each project card should include:
+
+- project name
+- category
+- concise description
+- what this proves
+- link to case study or source
+
+Do not invent screenshots, fake metrics, fake brands, fake testimonials, or fake outcomes.
+
+/work/newsharness page:
+
+Hero:
+
+Cloudflare Daily News Intelligence Agent
+
+Subheading:
+
+A Cloudflare-native intelligence system for scheduled collection, provider observability, story clustering, D1/R2 storage, article extraction, drafts, publishing, and traceable reporting.
+
+Chips:
+
+Cloudflare Agents SDK, Durable Objects, D1, R2, Workers AI, Evals
+
+Sections:
+
+1. Overview
+
+newsharness is a Cloudflare-native agent that discovers, curates, and delivers daily news intelligence. It orchestrates end-to-end pipelines using Cloudflare primitives with observability and traceability at each step.
+
+2. Problem
+
+News is fragmented, noisy, and fast-moving. Manual aggregation and publishing do not scale and often lack consistency, source tracking, and reviewable workflow boundaries.
+
+3. System Architecture
+
+Show a simple horizontal architecture:
+
+Sources → Provider normalization → Story clustering → Extraction + enrichment → Drafts + publishing → D1 analytics + R2 artifacts
+
+4. What It Does
+
+- Schedules and runs collection across multiple news providers
+- Normalizes and deduplicates stories
+- Clusters similar stories
+- Extracts article content and enriches metadata
+- Creates publication-ready drafts
+- Supports publishing workflows
+- Stores analytics in D1 and artifacts in R2
+
+5. What This Proves
+
+- Cloudflare Agents can orchestrate practical content pipelines
+- D1/R2/Durable Objects can support inspectable AI workflows
+- AI-assisted reporting should be observable and traceable
+- Separation of concerns improves reliability and maintainability
+
+6. Next Improvements
+
+- richer evals
+- better personalization
+- public Ask the Work integration
+- stronger reviewer workflow
+- source credibility scoring
+
+No fake metrics.
+No fake testimonial.
+No fake team size.
+
+/services page:
+
+Title:
+
+Services
+
+Subtitle:
+
+Systems that simplify operations and reduce manual work.
+
+Four service cards:
+
+1. Website Systems
+   Promise:
+   Professional websites that build trust and support your goals.
+   Best for:
+   Consultants, founders, product/catalogue brands, and service businesses.
+   Output:
+   Fast, secure websites that convert visitors into leads.
+
+2. Business Systems
+   Promise:
+   Smart systems to run your business smoothly and reliably.
+   Best for:
+   Growing teams and businesses managing operations.
+   Output:
+   Organized processes, dashboards, and data you can act on.
+
+3. AI Automation Systems
+   Promise:
+   Automations that save time and eliminate repetitive work.
+   Best for:
+   Teams and operators with recurring manual tasks.
+   Output:
+   Automated workflows that save hours every week.
+
+4. Workflow Audit
+   Promise:
+   Clear insight into what is slowing your work down.
+   Best for:
+   Businesses feeling stuck or scaling with inefficiencies.
+   Output:
+   A prioritized action plan to simplify and improve operations.
+
+CTA:
+
+Need a cleaner workflow or stronger website?
+
+Button:
+
+Book an audit
+
+/about page:
+
+Hero:
+
+Vijay Kumaran
+AI Automation & Web Systems Consultant
+
+Copy:
+
+I build practical websites, business systems, and AI automations that reduce manual work and run reliably every day.
+
+Location:
+
+Mumbai, India / Remote
+
+Availability:
+
+Available for selected projects
+
+How I work:
+
+1. Clarity first
+   I start by understanding the real problem, goals, and constraints. Simple scope. Clear outcomes.
+
+2. Reliable systems
+   I build systems that are secure, tested, and designed to handle real-world usage.
+
+3. Traceable automation
+   Automations should be observable and accountable. I design workflows that are transparent and easy to trust.
+
+4. Maintainable delivery
+   Clean code, documentation, and thoughtful handover so the system can keep working after launch.
+
+Stack chips:
+
+Next.js, TypeScript, Tailwind CSS, Cloudflare, D1/R2, Durable Objects, Postgres, pgvector, AI Workflows, GitHub
+
+Contact:
+
+Email:
+[element.bendr@gmail.com](mailto:element.bendr@gmail.com)
+
+CTA:
+
+Start a conversation
+
+Animation readiness:
+
+- Keep components animation-ready.
+- Add clean hover states.
+- Respect prefers-reduced-motion.
+- Do not over-animate now.
+- System-line motif may be static SVG/CSS now and animated later.
+
+Cloudflare:
+
+- Configure for Cloudflare Workers deployment using the Cloudflare/OpenNext path.
+- Add README instructions for local dev, build, preview, and deploy.
+- Do not configure D1/R2/Vectorize/AI Gateway yet.
+- Add this note:
+  “Ask the Work backend will be implemented in Phase 2 using D1 FTS5, AI Gateway, Workers AI, and optional Vectorize.”
+
+Quality requirements:
+
+- Semantic HTML
+- Responsive mobile layout
+- Accessible focus states
+- Clean component structure
+- No giant single-file page
+- No fake data beyond provided copy
+- No backend code in this phase
+
+Run:
+
+- npm install
+- npm run lint
+- npm run build
+- npm run preview if available
+
+Commit:
+
+feat: build Next.js quiet systems portfolio frontend
+
+Final response:
+
+Summarize pages built, files changed, commands run, Cloudflare deploy notes, and remaining frontend polish tasks.

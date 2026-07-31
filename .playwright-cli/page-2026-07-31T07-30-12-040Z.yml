@@ -1,0 +1,96 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "VK Vijay Kumaran" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: VK
+        - generic [ref=e7]: Vijay Kumaran
+      - navigation [ref=e8]:
+        - link "Work" [ref=e9] [cursor=pointer]:
+          - /url: /work
+        - link "Services" [ref=e10] [cursor=pointer]:
+          - /url: /services
+        - link "About" [ref=e11] [cursor=pointer]:
+          - /url: /about
+        - link "Approach" [ref=e12] [cursor=pointer]:
+          - /url: /about#approach
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: /about#contact
+        - link "Book an audit ↗" [ref=e14] [cursor=pointer]:
+          - /url: /about
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: About
+        - heading "Vijay Kumaran" [level=1] [ref=e20]
+        - paragraph [ref=e21]: AI Automation & Web Systems Consultant
+        - paragraph [ref=e22]: I build practical websites, business systems, and AI automations that reduce manual work and run reliably every day.
+        - generic [ref=e23]:
+          - link "Start a conversation" [ref=e24] [cursor=pointer]:
+            - /url: mailto:element.bendr@gmail.com
+          - link "View selected work" [ref=e25] [cursor=pointer]:
+            - /url: /work
+        - paragraph [ref=e26]: Recent work spans Cloudflare-native AI agents, AI memory systems, institutional publishing workflows, and production brand websites.
+      - complementary [ref=e27]:
+        - paragraph [ref=e28]: Recent proof
+        - list [ref=e29]:
+          - listitem [ref=e30]:
+            - generic [ref=e31]: newsharness
+            - generic [ref=e32]: Cloudflare-native intelligence system
+          - listitem [ref=e33]:
+            - generic [ref=e34]: memory-os
+            - generic [ref=e35]: AI coding-agent memory system
+          - listitem [ref=e36]:
+            - generic [ref=e37]: KPDC / Trifecta
+            - generic [ref=e38]: Institutional publishing workflow
+          - listitem [ref=e39]:
+            - generic [ref=e40]: SteelMade
+            - generic [ref=e41]: Production brand website
+    - generic [ref=e43]:
+      - paragraph [ref=e44]: How I work
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e47]: "01"
+          - heading "Clarity first" [level=2] [ref=e48]
+          - paragraph [ref=e49]: I start by understanding the real problem, goals, and constraints. Simple scope. Clear outcomes.
+        - generic [ref=e50]:
+          - generic [ref=e51]: "02"
+          - heading "Reliable systems" [level=2] [ref=e52]
+          - paragraph [ref=e53]: I build systems that are secure, tested, and designed to handle real-world usage.
+        - generic [ref=e54]:
+          - generic [ref=e55]: "03"
+          - heading "Traceable automation" [level=2] [ref=e56]
+          - paragraph [ref=e57]: Automations should be observable and accountable. I design workflows that are transparent and easy to trust.
+        - generic [ref=e58]:
+          - generic [ref=e59]: "04"
+          - heading "Maintainable delivery" [level=2] [ref=e60]
+          - paragraph [ref=e61]: Clean code, documentation, and thoughtful handover so the system can keep working after launch.
+    - generic [ref=e63]:
+      - paragraph [ref=e64]: Working stack
+      - heading "Modern, fast, secure." [level=2] [ref=e65]: Modern, fast,secure.
+      - generic [ref=e66]:
+        - generic [ref=e67]: Next.js
+        - generic [ref=e68]: TypeScript
+        - generic [ref=e69]: Tailwind CSS
+        - generic [ref=e70]: Cloudflare
+        - generic [ref=e71]: D1/R2
+        - generic [ref=e72]: Durable Objects
+        - generic [ref=e73]: Postgres
+        - generic [ref=e74]: pgvector
+        - generic [ref=e75]: AI Workflows
+        - generic [ref=e76]: GitHub
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - paragraph [ref=e80]: Contact
+        - heading "Start a conversation." [level=2] [ref=e81]: Start aconversation.
+        - link "element.bendr@gmail.com" [ref=e82] [cursor=pointer]:
+          - /url: mailto:element.bendr@gmail.com
+      - link "Send an email" [ref=e83] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - contentinfo [ref=e84]:
+    - generic [ref=e85]:
+      - generic [ref=e86]: Vijay Kumaran / Mumbai, India
+      - generic [ref=e87]: Cloudflare Workers / OpenNext
+      - link "element.bendr@gmail.com" [ref=e88] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
+  - alert [ref=e89]

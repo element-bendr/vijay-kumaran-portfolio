@@ -1,0 +1,80 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "VK Vijay Kumaran" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: VK
+        - generic [ref=e7]: Vijay Kumaran
+      - navigation [ref=e8]:
+        - link "Work" [ref=e9] [cursor=pointer]:
+          - /url: /work
+        - link "Services" [ref=e10] [cursor=pointer]:
+          - /url: /services
+        - link "About" [ref=e11] [cursor=pointer]:
+          - /url: /about
+        - link "Approach" [ref=e12] [cursor=pointer]:
+          - /url: /about#approach
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: /about#contact
+        - link "Book an audit ↗" [ref=e14] [cursor=pointer]:
+          - /url: /about
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - paragraph [ref=e18]: Services
+      - heading "Systems that simplify operations." [level=1] [ref=e19]: Systems that simplifyoperations.
+      - paragraph [ref=e20]: Choose the system you need built, cleaned up, or automated.
+    - generic [ref=e23]:
+      - article [ref=e24]:
+        - generic [ref=e25]: "01"
+        - heading "Website Systems" [level=2] [ref=e26]
+        - paragraph [ref=e27]: Professional websites that build trust and support your goals.
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - term [ref=e30]: Best for
+            - definition [ref=e31]: Consultants, founders, product/catalogue brands, and service businesses.
+          - generic [ref=e32]:
+            - term [ref=e33]: Output
+            - definition [ref=e34]: Fast, secure websites that convert visitors into leads.
+      - article [ref=e35]:
+        - generic [ref=e36]: "02"
+        - heading "Business Systems" [level=2] [ref=e37]
+        - paragraph [ref=e38]: Smart systems to run your business smoothly and reliably.
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - term [ref=e41]: Best for
+            - definition [ref=e42]: Growing teams and businesses managing operations.
+          - generic [ref=e43]:
+            - term [ref=e44]: Output
+            - definition [ref=e45]: Organized processes, dashboards, and data you can act on.
+      - article [ref=e46]:
+        - generic [ref=e47]: "03"
+        - heading "AI Automation Systems" [level=2] [ref=e48]
+        - paragraph [ref=e49]: Automations that save time and eliminate repetitive work.
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - term [ref=e52]: Best for
+            - definition [ref=e53]: Teams and operators with recurring manual tasks.
+          - generic [ref=e54]:
+            - term [ref=e55]: Output
+            - definition [ref=e56]: Automated workflows that save hours every week.
+      - article [ref=e57]:
+        - generic [ref=e58]: "04"
+        - heading "Workflow Audit" [level=2] [ref=e59]
+        - paragraph [ref=e60]: Clear insight into what is slowing your work down.
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - term [ref=e63]: Best for
+            - definition [ref=e64]: Businesses feeling stuck or scaling with inefficiencies.
+          - generic [ref=e65]:
+            - term [ref=e66]: Output
+            - definition [ref=e67]: A prioritized action plan to simplify and improve operations.
+    - generic [ref=e69]:
+      - heading "Need a cleaner workflow or stronger website?" [level=2] [ref=e70]
+      - link "Book an audit" [ref=e71] [cursor=pointer]:
+        - /url: /about
+  - contentinfo [ref=e72]:
+    - generic [ref=e73]:
+      - generic [ref=e74]: Vijay Kumaran / Mumbai, India
+      - generic [ref=e75]: Cloudflare Workers / OpenNext
+      - link "element.bendr@gmail.com" [ref=e76] [cursor=pointer]:
+        - /url: mailto:element.bendr@gmail.com
