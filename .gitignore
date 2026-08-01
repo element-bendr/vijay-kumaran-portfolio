@@ -13,3 +13,4 @@ out
 *.db
 .beads-credential-key
 .playwright-cli/
+package-lock.json
