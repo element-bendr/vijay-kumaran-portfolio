@@ -27,7 +27,6 @@ const PROMPT_LEAK_PATTERNS: Array<[RegExp, string]> = [
   [/\bCATEGORY:\b/, "Prompt leak: format label"],
   [/\bVISIBILITY:\b/, "Prompt leak: format label"],
   [/\bsystem\s*prompt\b/i, "Prompt leak: system prompt"],
-  [/\bindexed\s*corpus\b/i, "Prompt leak: indexed corpus"],
   [/\bas\s*an\s*AI\b/i, "Straying from persona"],
   [/\bbased\s*on\s*my\s*training\b/i, "Straying from persona"],
   [/\bgeneral\s*knowledge\b/i, "Straying from persona"],
