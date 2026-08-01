@@ -28,6 +28,8 @@ const SUGGESTIONS = [
   "What does memory-os show?",
 ];
 
+const API_URL = "https://vijay-kumaran-portfolio-api.random-planzz.workers.dev";
+
 type State =
   | { type: "idle" }
   | { type: "loading" }
@@ -58,7 +60,7 @@ export function AskTheWork() {
     ctrlRef.current = ctrl;
 
     try {
-      const res = await fetch("/api/ask", {
+      const res = await fetch(`${API_URL}/api/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: q.trim() }),

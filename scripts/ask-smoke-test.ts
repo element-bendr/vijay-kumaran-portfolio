@@ -6,7 +6,7 @@
  * Full model integration requires env vars (CLOUDFLARE_ACCOUNT_ID or AI_PROVIDER_URL).
  */
 
-const BASE = process.env.BASE_URL ?? "http://localhost:3005";
+const BASE = process.env.BASE_URL ?? "https://vijay-kumaran-portfolio-api.random-planzz.workers.dev";
 
 async function post(path: string, body: unknown) {
   const res = await fetch(`${BASE}${path}`, {

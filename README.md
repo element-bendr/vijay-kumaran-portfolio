@@ -1,6 +1,6 @@
 # Vijay Kumaran Portfolio
 
-AI Automation & Web Systems Consultant portfolio. Built with Next.js App Router, TypeScript, Tailwind CSS, and OpenNext for Cloudflare Workers.
+AI Automation & Web Systems Consultant portfolio. Built with Next.js App Router, TypeScript, Tailwind CSS, and static export (`output: "export"`) deployed to Cloudflare Pages. The Ask the Work API is a standalone Cloudflare Worker.
 
 ## Local development
 
@@ -11,14 +11,24 @@ pnpm dev
 
 ```bash
 pnpm build
-pnpm preview
 ```
 
 ## Cloudflare deployment
 
+Frontend (static export):
+
 ```bash
-pnpm exec opennextjs-cloudflare build
-pnpm exec opennextjs-cloudflare deploy
+npm run build
+npx wrangler pages deploy out --project-name vijay-kumaran-portfolio-ask
+```
+
+API Worker (Ask the Work):
+
+```bash
+npm run deploy:api-worker
+npx wrangler secret put AI_PROVIDER_URL   # wrangler-api.toml
+npx wrangler secret put AI_PROVIDER_KEY
+npx wrangler secret put AI_MODEL
 ```
 
 The Ask the Work feature uses a direct-corpus-in-prompt architecture (v1). The full public-safe project corpus (~8k words) fits in the model prompt — no retrieval, no vector store, no D1 indexing needed.
@@ -50,6 +60,8 @@ wrangler secret put AI_MODEL
 ```
 
 ### Endpoints
+
+The API is served by the standalone Worker `vijay-kumaran-portfolio-api.random-planzz.workers.dev` (CORS-enabled for the Pages frontend).
 
 | Method | Path | Description |
 |--------|------|-------------|

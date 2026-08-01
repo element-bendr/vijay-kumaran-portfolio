@@ -2,6 +2,8 @@ node_modules
 .next
 .open-next
 .wrangler
+out
+.vercel
 *.tsbuildinfo
 .env*
 !.env.example
@@ -10,3 +12,4 @@ node_modules
 .dolt/
 *.db
 .beads-credential-key
+.playwright-cli/

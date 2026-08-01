@@ -25,7 +25,12 @@ function checkRate(ip: string): boolean {
 function json(data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data), {
     status,
-    headers: { "content-type": "application/json; charset=utf-8" },
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "access-control-allow-origin": "*",
+      "access-control-allow-methods": "GET, POST, OPTIONS",
+      "access-control-allow-headers": "Content-Type",
+    },
   });
 }
 
@@ -124,6 +129,17 @@ export default {
   async fetch(request: Request, env: Record<string, unknown>): Promise<Response> {
     Object.assign(process.env, env);
     const url = new URL(request.url);
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          "access-control-allow-origin": "*",
+          "access-control-allow-methods": "GET, POST, OPTIONS",
+          "access-control-allow-headers": "Content-Type",
+          "access-control-max-age": "86400",
+        },
+      });
+    }
     if (request.method === "GET" && url.pathname === "/api/health") {
       return handleHealth();
     }

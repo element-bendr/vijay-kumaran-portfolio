@@ -7,7 +7,7 @@
  * Falls back to offline guard-level tests if the API returns 500 (model not configured).
  */
 
-const API_BASE = process.env.BASE_URL ?? "http://localhost:3006";
+const API_BASE = process.env.BASE_URL ?? "https://vijay-kumaran-portfolio-api.random-planzz.workers.dev";
 
 async function ask(question: string) {
   const res = await fetch(`${API_BASE}/api/ask`, {

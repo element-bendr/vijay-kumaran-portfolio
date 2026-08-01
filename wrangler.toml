@@ -1,7 +1,5 @@
 name = "vijay-kumaran-portfolio"
 compatibility_date = "2025-01-01"
-compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
-pages_build_output_dir = ".vercel/output/static"
+pages_build_output_dir = "out"
 
-# Build command: npx @cloudflare/next-on-pages
-# Deploy: wrangler pages deploy (configured in Dashboard CI/CD)
+# Static export deploy: next build && wrangler pages deploy out --project-name vijay-kumaran-portfolio-ask
