@@ -28,7 +28,7 @@ export function MotionSection({ children, className, stagger = true }: { childre
 }
 
 export function MotionItem({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <motion.div variants={reveal} className={className}>{children}</motion.div>;
+  return <motion.div initial={false} variants={reveal} className={className}>{children}</motion.div>;
 }
 
 export function MotionHero({ children, className }: { children: React.ReactNode; className?: string }) {

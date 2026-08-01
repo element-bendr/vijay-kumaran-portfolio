@@ -60,7 +60,7 @@ export function extractSourcesFromAnswer(answer: string): AskSource[] {
   const matched: AskSource[] = [];
   for (const record of projectKnowledge) {
     for (const source of record.sources) {
-      const key = `${source.label}|${record.project}`;
+      const key = `${source.label}|${source.url ?? ""}|${source.path ?? ""}`;
       if (seen.has(key)) continue;
       if (lower.includes(source.label.toLowerCase())) {
         seen.add(key);
