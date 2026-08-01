@@ -13,6 +13,20 @@ type Source = {
   url?: string;
 };
 
+const PATH_TO_ROUTE: Record<string, string> = {
+  "app/about/page.tsx": "/about",
+  "app/services/page.tsx": "/services",
+  "data/services.ts": "/services",
+  "data/projects.ts": "/work",
+  "app/work/newsharness/page.tsx": "/work/newsharness",
+};
+
+function resolveSourceHref(s: Source): string {
+  if (s.url) return s.url;
+  if (s.path && PATH_TO_ROUTE[s.path]) return PATH_TO_ROUTE[s.path];
+  return s.path ?? "#";
+}
+
 type AskResponse = {
   answer: string;
   sources: Source[];
@@ -200,15 +214,30 @@ export function AskTheWork() {
                 dangerouslySetInnerHTML={{ __html: md(state.answer) }}
               />
               {state.sources.length > 0 && (
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {state.sources.map((s) => (
-                    <span key={s.label + s.project} className="inline-flex items-center gap-1.5 border border-light-line px-3 py-1.5 font-mono text-[11px] text-muted-light">
-                      {s.label}
-                      {s.url ? (
-                        <a href={s.url} target="_blank" rel="noreferrer" className="text-blue hover:underline">open</a>
-                      ) : null}
-                    </span>
-                  ))}
+                <div className="mt-6 grid gap-2 sm:grid-cols-2">
+                  {state.sources.map((s) => {
+                    const href = resolveSourceHref(s);
+                    const external = href.startsWith("http");
+                    return (
+                      <a
+                        key={s.label + s.project}
+                        href={href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noreferrer" : undefined}
+                        className="group flex items-center justify-between gap-3 border border-light-line bg-white px-4 py-3 transition-colors hover:border-cyan/60"
+                      >
+                        <div className="min-w-0">
+                          <p className="truncate font-mono text-[10px] uppercase tracking-wide text-muted-light">
+                            {s.project}
+                          </p>
+                          <p className="mt-0.5 truncate text-sm text-ink">{s.label}</p>
+                        </div>
+                        <span className="shrink-0 font-mono text-xs text-blue transition-transform group-hover:translate-x-0.5">
+                          open ↗
+                        </span>
+                      </a>
+                    );
+                  })}
                 </div>
               )}
               {state.relatedProjects.length > 0 && (
