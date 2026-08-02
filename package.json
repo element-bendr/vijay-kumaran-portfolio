@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "deploy": "next build && wrangler pages deploy out --project-name vijay-kumaran-portfolio-ask",
+    "test:smoke": "tsx scripts/ask-smoke-test.ts",
+    "test:e2e": "tsx scripts/ask-e2e-test.ts",
+    "deploy": "npm run lint && next build && wrangler pages deploy out --project-name vijay-kumaran-portfolio-ask",
     "deploy:api-worker": "esbuild scripts/api-worker.ts --bundle --format=esm --platform=browser --target=es2022 --outfile=dist/api-worker.js && wrangler deploy dist/api-worker.js --name vijay-kumaran-portfolio-api --config wrangler-api.toml"
   },
   "dependencies": {
@@ -27,6 +29,7 @@
     "esbuild": "^0.28.1",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.20.0",
     "typescript": "^5.8.3",
     "wrangler": "^4.24.0"
   }

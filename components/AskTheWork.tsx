@@ -51,6 +51,10 @@ type State =
   | { type: "refused"; reason: string }
   | { type: "error"; message: string };
 
+function track(event: string, props?: Record<string, unknown>) {
+  (window as Window & { posthog?: { capture: (e: string, p?: Record<string, unknown>) => void } }).posthog?.capture(event, props);
+}
+
 function md(text: string): string {
   const html = marked.parse(text, { async: false }) as string;
   return DOMPurify.sanitize(html);
@@ -65,6 +69,8 @@ export function AskTheWork() {
   const [question, setQuestion] = useState("");
   const [state, setState] = useState<State>({ type: "idle" });
   const ctrlRef = useRef<AbortController | null>(null);
+  const retriedRef = useRef(false);
+  const lastQRef = useRef("");
 
   const cancel = useCallback(() => {
     ctrlRef.current?.abort();
@@ -73,6 +79,7 @@ export function AskTheWork() {
 
   const submit = useCallback(async (q: string) => {
     if (!q.trim()) return;
+    lastQRef.current = q.trim();
     setState({ type: "loading" });
 
     const ctrl = new AbortController();
@@ -104,8 +111,18 @@ export function AskTheWork() {
       const data: AskResponse = await res.json();
 
       if (data.refused) {
+        // ponytail: single auto-retry on refusal — model is non-deterministic, grounded questions are occasionally refused
+        if (!retriedRef.current) {
+          retriedRef.current = true;
+          submit(q);
+          return;
+        }
+        retriedRef.current = false;
+        track("ask_refused", { question: q.trim(), reason: data.refusalReason ?? "" });
         setState({ type: "refused", reason: data.refusalReason ?? "" });
       } else {
+        retriedRef.current = false;
+        track("ask_answered", { question: q.trim() });
         setState({
           type: "answer",
           answer: data.answer,
@@ -169,6 +186,7 @@ export function AskTheWork() {
                       value={question}
                       onChange={(e) => setQuestion(e.target.value)}
                       placeholder="E.g., What proves AI automation experience?"
+                      aria-label="Ask the work a question"
                       className="flex-1 border border-light-line bg-white px-4 py-3 font-mono text-sm text-ink placeholder:text-muted-light focus:border-cyan focus:outline-none"
                     />
                     <button
@@ -250,6 +268,21 @@ export function AskTheWork() {
                   {state.relatedProjects.map((p) => <span key={p}>{p}</span>)}
                 </div>
               )}
+              <div className="mt-5 flex items-center gap-3">
+                <span className="font-mono text-[11px] uppercase tracking-[.1em] text-muted-light">Was this helpful?</span>
+                <button
+                  onClick={() => track("ask_feedback", { question: lastQRef.current, value: "helpful" })}
+                  className="border border-light-line px-3 py-1.5 font-mono text-xs text-muted-light transition-colors hover:border-cyan/60 hover:text-ink"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => track("ask_feedback", { question: lastQRef.current, value: "not_helpful" })}
+                  className="border border-light-line px-3 py-1.5 font-mono text-xs text-muted-light transition-colors hover:border-cyan/60 hover:text-ink"
+                >
+                  No
+                </button>
+              </div>
               <button onClick={reset} className="mt-6 font-mono text-sm tracking-[.02em] text-blue hover:underline">
                 Ask another question <AnimatedArrow />
               </button>
