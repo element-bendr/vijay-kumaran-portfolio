@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { AskTheWork, ButtonLink, LiveSitesStrip, PageShell, ProjectMark, SectionLabel, SystemLines } from "@/components/site";
+import { AskTheWork, ButtonLink, LiveSitesStrip, PageShell, ProjectMark, SectionLabel } from "@/components/site";
+import { ConvergenceNet } from "@/components/ConvergenceNet";
 import { AnimatedArrow, HeroItem, MotionHero, MotionItem, MotionSection } from "@/components/motion";
 import { projects } from "@/data/projects";
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return <PageShell>
-    <section className="hero-grid relative overflow-hidden bg-dark text-light"><SystemLines />
+    <section className="hero-grid relative overflow-hidden bg-dark text-light"><ConvergenceNet />
       <MotionHero className="relative mx-auto max-w-7xl px-6 pb-16 pt-16 sm:px-10 lg:px-16 lg:pb-20 lg:pt-20">
         <HeroItem><SectionLabel>AI Automation &amp; Web Systems Consultant</SectionLabel></HeroItem>
         <HeroItem><h1 className="display mt-7 max-w-5xl text-[clamp(3.5rem,7.4vw,7.5rem)] leading-[.92]">Websites.<br />Business systems.<br /><span className="text-cyan">AI automations.</span></h1></HeroItem>
