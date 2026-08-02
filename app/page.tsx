@@ -29,7 +29,7 @@ export default function Home() {
             <div className="mt-10 max-w-2xl">
               <HeroItem><WordReveal text="Built to reduce manual work." className="text-2xl leading-tight text-slate-200 sm:text-3xl" /></HeroItem>
               <HeroItem><p className="mt-5 text-base leading-relaxed text-muted-dark">I build practical web systems, admin workflows, and AI automations that run reliably every day.</p></HeroItem>
-              <HeroItem><div><div className="flex flex-wrap gap-3"><Magnetic><ButtonLink href="/work">View case studies</ButtonLink></Magnetic><Magnetic><ButtonLink href="/about#audit" secondary>Book an audit</ButtonLink></Magnetic></div><p className="mt-7 border-t border-dark-line pt-4 text-sm leading-relaxed text-muted-dark">Proof across Cloudflare agents, AI memory systems, institutional publishing, and production websites.</p></div></HeroItem>
+              <HeroItem><div><div className="flex flex-wrap gap-3"><Magnetic><ButtonLink href="/work">View case studies</ButtonLink></Magnetic><Magnetic><ButtonLink href="/about#audit" secondary>Book an audit</ButtonLink></Magnetic></div><p className="mt-7 border-t border-dark-line pt-4 text-sm leading-relaxed text-muted-dark">Shipped for institutions, brands, and daily operations.</p></div></HeroItem>
             </div>
           </div>
           <HeroItem className="justify-self-center"><AskHero /><WorkBoard /></HeroItem>
