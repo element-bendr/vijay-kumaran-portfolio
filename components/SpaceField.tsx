@@ -7,13 +7,14 @@ const COLORS = ["#FFFFFF", "#A7B0C0", "#22D3EE", "#3B82F6"];
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
 const pick = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
+const FLOW = (Math.PI * 5) / 4;
 const BUCKETS = [
-  { min: 0.55, max: 1, ratio: 0.5, speed: 0.1, size: [0.4, 1], opacity: [0.3, 0.55] },
-  { min: 0.25, max: 0.55, ratio: 0.3, speed: 0.22, size: [0.7, 1.5], opacity: [0.45, 0.8] },
-  { min: 0.06, max: 0.25, ratio: 0.2, speed: 0.42, size: [1, 2.2], opacity: [0.7, 1] },
+  { ratio: 0.5, speed: [6, 12], size: [0.4, 1], opacity: [0.3, 0.55] },
+  { ratio: 0.3, speed: [12, 22], size: [0.7, 1.5], opacity: [0.45, 0.8] },
+  { ratio: 0.2, speed: [20, 38], size: [1, 2.2], opacity: [0.7, 1] },
 ];
 
-type Star = { x: number; y: number; z: number; speed: number; size: number; opacity: number; color: string; bucket: number };
+type Star = { x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string; bucket: number };
 
 const PLANETS = [
   { color: "#22D3EE", size: 420, left: "6%", top: "22%", opacity: 0.16, drift: [22, -16] as const, breathe: 1.12 },
@@ -52,16 +53,15 @@ export function SpaceField() {
     };
     resize();
 
-    const cx = () => w / 2;
-    const cy = () => h * 0.42;
-
     const makeStar = (bucket: number): Star => {
       const b = BUCKETS[bucket];
+      const ang = FLOW + rand(-0.4, 0.4);
+      const spd = rand(b.speed[0], b.speed[1]);
       return {
-        x: rand(-0.2 * w, 1.2 * w),
-        y: rand(-0.2 * h, 1.2 * h),
-        z: rand(b.min, b.max),
-        speed: b.speed,
+        x: rand(0, w),
+        y: rand(0, h),
+        vx: Math.cos(ang) * spd,
+        vy: Math.sin(ang) * spd,
         size: rand(b.size[0], b.size[1]),
         opacity: rand(b.opacity[0], b.opacity[1]),
         color: Math.random() < 0.3 ? pick(COLORS.slice(2)) : pick(COLORS.slice(0, 2)),
@@ -74,22 +74,27 @@ export function SpaceField() {
       for (let n = Math.round(COUNT * b.ratio); n > 0; n--) stars.push(makeStar(i));
     });
 
-    const proj = (s: Star) => ({ x: cx() + (s.x - cx()) * s.z, y: cy() + (s.y - cy()) * s.z, r: Math.max(0.3, s.size * (1.4 - s.z)) });
+    const M = 40;
+    const wrapStar = (s: Star) => {
+      if (s.x < -M) s.x = w + M;
+      else if (s.x > w + M) s.x = -M;
+      if (s.y < -M) s.y = h + M;
+      else if (s.y > h + M) s.y = -M;
+    };
 
-    const draw = (s: Star, trail?: { x: number; y: number }) => {
-      const p = proj(s);
-      ctx.globalAlpha = Math.min(1, s.opacity * (1.3 - s.z));
+    const draw = (s: Star, prev?: { x: number; y: number }) => {
+      ctx.globalAlpha = s.opacity;
       ctx.fillStyle = s.color;
-      if (trail && streaks) {
+      if (prev && streaks && Math.abs(s.x - prev.x) < 120 && Math.abs(s.y - prev.y) < 120) {
         ctx.beginPath();
-        ctx.moveTo(trail.x, trail.y);
-        ctx.lineTo(p.x, p.y);
+        ctx.moveTo(prev.x, prev.y);
+        ctx.lineTo(s.x, s.y);
         ctx.strokeStyle = s.color;
-        ctx.lineWidth = Math.max(0.5, p.r * 0.6);
+        ctx.lineWidth = Math.max(0.5, s.size * 0.6);
         ctx.stroke();
       } else {
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
       }
     };
@@ -112,14 +117,10 @@ export function SpaceField() {
       last = now;
       ctx.clearRect(0, 0, w, h);
       for (const s of stars) {
-        const prev = proj(s);
-        s.z -= s.speed * dt;
-        if (s.z < 0.04) {
-          const b = BUCKETS[s.bucket];
-          s.z = b.max;
-          s.x = rand(-0.2 * w, 1.2 * w);
-          s.y = rand(-0.2 * h, 1.2 * h);
-        }
+        const prev = { x: s.x, y: s.y };
+        s.x += s.vx * dt;
+        s.y += s.vy * dt;
+        wrapStar(s);
         draw(s, prev);
       }
       raf = requestAnimationFrame(tick);
