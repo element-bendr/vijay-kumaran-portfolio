@@ -3,18 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 
-const COLORS = ["#FFFFFF", "#A7B0C0", "#22D3EE", "#3B82F6"];
+const COLORS = ["#FFFFFF", "#A7B0C0", "#22D3EE", "#3B82F6", "#F59E0B"];
 const rand = (min: number, max: number) => min + Math.random() * (max - min);
 const pick = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
 const FLOW = (Math.PI * 5) / 4;
 const BUCKETS = [
-  { ratio: 0.5, speed: [6, 12], size: [0.4, 1], opacity: [0.3, 0.55] },
-  { ratio: 0.3, speed: [12, 22], size: [0.7, 1.5], opacity: [0.45, 0.8] },
-  { ratio: 0.2, speed: [20, 38], size: [1, 2.2], opacity: [0.7, 1] },
+  { ratio: 0.5, speed: [6, 12], size: [0.4, 1], opacity: [0.3, 0.55], par: 4 },
+  { ratio: 0.3, speed: [12, 22], size: [0.7, 1.5], opacity: [0.45, 0.8], par: 10 },
+  { ratio: 0.2, speed: [20, 38], size: [1, 2.2], opacity: [0.7, 1], par: 22 },
 ];
 
-type Star = { x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string; bucket: number };
+type Star = { x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string; bucket: number; par: number; phase: number; tw: number };
 
 const PLANETS = [
   { color: "#22D3EE", size: 420, left: "6%", top: "22%", opacity: 0.16, drift: [22, -16] as const, breathe: 1.12 },
@@ -40,6 +40,7 @@ export function SpaceField() {
     const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
     const COUNT = mobile ? 80 : 200;
     const streaks = !mobile && !reduce;
+    let mx = 0, my = 0;
 
     let w = 0, h = 0;
     const resize = () => {
@@ -66,6 +67,9 @@ export function SpaceField() {
         opacity: rand(b.opacity[0], b.opacity[1]),
         color: Math.random() < 0.3 ? pick(COLORS.slice(2)) : pick(COLORS.slice(0, 2)),
         bucket,
+        par: b.par,
+        phase: rand(0, Math.PI * 2),
+        tw: rand(0.5, 1.5),
       };
     };
 
@@ -82,26 +86,28 @@ export function SpaceField() {
       else if (s.y > h + M) s.y = -M;
     };
 
-    const draw = (s: Star, prev?: { x: number; y: number }) => {
-      ctx.globalAlpha = s.opacity;
+    const draw = (s: Star, t: number, prev?: { x: number; y: number }) => {
+      const dx = s.x + mx * s.par;
+      const dy = s.y + my * s.par;
+      ctx.globalAlpha = s.opacity * (0.75 + 0.25 * Math.sin(t * s.tw + s.phase));
       ctx.fillStyle = s.color;
       if (prev && streaks && Math.abs(s.x - prev.x) < 120 && Math.abs(s.y - prev.y) < 120) {
         ctx.beginPath();
         ctx.moveTo(prev.x, prev.y);
-        ctx.lineTo(s.x, s.y);
+        ctx.lineTo(dx, dy);
         ctx.strokeStyle = s.color;
         ctx.lineWidth = Math.max(0.5, s.size * 0.6);
         ctx.stroke();
       } else {
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.arc(dx, dy, s.size, 0, Math.PI * 2);
         ctx.fill();
       }
     };
 
-    const render = () => {
+    const render = (t = 0) => {
       ctx.clearRect(0, 0, w, h);
-      for (const s of stars) draw(s);
+      for (const s of stars) draw(s, t);
     };
 
     if (reduce) {
@@ -115,13 +121,14 @@ export function SpaceField() {
     const tick = (now: number) => {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
+      const t = now / 1000;
       ctx.clearRect(0, 0, w, h);
       for (const s of stars) {
-        const prev = { x: s.x, y: s.y };
+        const prev = { x: s.x + mx * s.par, y: s.y + my * s.par };
         s.x += s.vx * dt;
         s.y += s.vy * dt;
         wrapStar(s);
-        draw(s, prev);
+        draw(s, t, prev);
       }
       raf = requestAnimationFrame(tick);
     };
@@ -133,6 +140,16 @@ export function SpaceField() {
     io.observe(wrap);
     const onVis = () => (document.hidden ? stop() : start());
     document.addEventListener("visibilitychange", onVis);
+    const onMove = (e: MouseEvent) => {
+      const r = wrap.getBoundingClientRect();
+      mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+    };
+    const onLeave = () => { mx = 0; my = 0; };
+    if (!mobile && !reduce) {
+      wrap.addEventListener("mousemove", onMove);
+      wrap.addEventListener("mouseleave", onLeave);
+    }
     const onResize = () => { resize(); stars = []; BUCKETS.forEach((b, i) => { for (let n = Math.round(COUNT * b.ratio); n > 0; n--) stars.push(makeStar(i)); }); render(); };
     window.addEventListener("resize", onResize);
 
@@ -142,6 +159,8 @@ export function SpaceField() {
       stop();
       io.disconnect();
       document.removeEventListener("visibilitychange", onVis);
+      wrap.removeEventListener("mousemove", onMove);
+      wrap.removeEventListener("mouseleave", onLeave);
       window.removeEventListener("resize", onResize);
     };
   }, [reduce]);
@@ -150,6 +169,8 @@ export function SpaceField() {
 
   return (
     <div ref={wrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 opacity-70" style={{ background: "radial-gradient(58% 48% at 22% 18%, rgba(34,211,238,.16), transparent 70%)" }} />
+      <div className="absolute inset-0 opacity-60" style={{ background: "radial-gradient(52% 44% at 78% 64%, rgba(59,130,246,.14), transparent 70%), radial-gradient(40% 36% at 60% 8%, rgba(217,70,239,.09), transparent 72%)" }} />
       <canvas ref={canvasRef} className="opacity-50" />
       {planets.map((p, i) => {
         const orchestrator = i === 0;
