@@ -5,9 +5,9 @@ import { LIVE_SITES } from "@/components/site";
 import { EASE } from "@/components/motion";
 
 const TRUST = [
-  { name: "Sterling Synergies", role: "Industrial supplies", quote: "Rebuilt our online presence. Clean, fast, handles enquiries." },
-  { name: "Sopranos Inc.", role: "Construction", quote: "Professional site that actually brings in leads." },
-  { name: "GreenShoot", role: "Environmental service", quote: "No maintenance headaches. It just runs." },
+  { name: "Sterling Synergies", role: "Industrial supplies", quote: "Rebuilt our online presence. Clean, fast, handles enquiries.", slug: "sterling" },
+  { name: "Sopranos Inc.", role: "Construction", quote: "Professional site that actually brings in leads.", slug: "sopranos" },
+  { name: "GreenShoot", role: "Environmental service", quote: "No maintenance headaches. It just runs.", slug: "greenshoot" },
 ];
 
 export function TrustStrip() {
@@ -27,6 +27,7 @@ export function TrustStrip() {
               variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } } }}
               className="border border-dark-line p-5"
             >
+              <img src={`/projects/${t.slug}.avif`} alt="" className="mb-4 w-full border border-dark-line" />
               <p className="text-sm leading-relaxed text-slate-300">&ldquo;{t.quote}&rdquo;</p>
               <div className="mt-3 flex items-center gap-2">
                 <span className="h-px w-3 bg-cyan/40" />
