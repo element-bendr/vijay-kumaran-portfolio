@@ -56,6 +56,11 @@ function md(text: string): string {
   return DOMPurify.sanitize(html);
 }
 
+function stripSourcesSection(answer: string): string {
+  const idx = answer.search(/\*\*Sources used\*\*|\nSources used/i);
+  return idx === -1 ? answer : answer.slice(0, idx).trim();
+}
+
 export function AskTheWork() {
   const [question, setQuestion] = useState("");
   const [state, setState] = useState<State>({ type: "idle" });
@@ -211,7 +216,7 @@ export function AskTheWork() {
             <div className="mt-10">
               <div
                 className="prose max-w-none text-ink prose-a:text-blue [&_pre]:bg-dark-soft [&_pre]:text-light [&_pre]:p-4 [&_pre]:text-xs [&_code]:bg-dark-soft/10 [&_code]:px-1 [&_code]:text-xs"
-                dangerouslySetInnerHTML={{ __html: md(state.answer) }}
+                dangerouslySetInnerHTML={{ __html: md(stripSourcesSection(state.answer)) }}
               />
               {state.sources.length > 0 && (
                 <div className="mt-6 grid gap-2 sm:grid-cols-2">
