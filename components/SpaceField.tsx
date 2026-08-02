@@ -9,17 +9,17 @@ const pick = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
 const FLOW = (Math.PI * 5) / 4;
 const BUCKETS = [
-  { ratio: 0.5, speed: [6, 12], size: [0.4, 1], opacity: [0.3, 0.55], par: 4 },
-  { ratio: 0.3, speed: [12, 22], size: [0.7, 1.5], opacity: [0.45, 0.8], par: 10 },
-  { ratio: 0.2, speed: [20, 38], size: [1, 2.2], opacity: [0.7, 1], par: 22 },
+  { ratio: 0.5, speed: [6, 12], size: [0.8, 2], opacity: [0.4, 0.7], par: 4 },
+  { ratio: 0.3, speed: [12, 22], size: [1.4, 3], opacity: [0.55, 0.9], par: 10 },
+  { ratio: 0.2, speed: [20, 38], size: [2, 4.5], opacity: [0.8, 1], par: 22 },
 ];
 
 type Star = { x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string; bucket: number; par: number; phase: number; tw: number };
 
 const PLANETS = [
-  { color: "#22D3EE", size: 420, left: "6%", top: "22%", opacity: 0.16, drift: [22, -16] as const, breathe: 1.12 },
-  { color: "#3B82F6", size: 560, left: "74%", top: "50%", opacity: 0.13, drift: [-26, 18] as const, breathe: 1.08 },
-  { color: "#D946EF", size: 320, left: "56%", top: "6%", opacity: 0.11, drift: [16, 22] as const, breathe: 1.14 },
+  { color: "#22D3EE", size: 420, left: "6%", top: "22%", opacity: 0.3, drift: [22, -16] as const, breathe: 1.12 },
+  { color: "#3B82F6", size: 560, left: "74%", top: "50%", opacity: 0.24, drift: [-26, 18] as const, breathe: 1.08 },
+  { color: "#D946EF", size: 320, left: "56%", top: "6%", opacity: 0.2, drift: [16, 22] as const, breathe: 1.14 },
 ];
 
 export function SpaceField() {
@@ -89,14 +89,15 @@ export function SpaceField() {
     const draw = (s: Star, t: number, prev?: { x: number; y: number }) => {
       const dx = s.x + mx * s.par;
       const dy = s.y + my * s.par;
-      ctx.globalAlpha = s.opacity * (0.75 + 0.25 * Math.sin(t * s.tw + s.phase));
+      ctx.globalAlpha = s.opacity * (0.8 + 0.2 * Math.sin(t * s.tw + s.phase));
       ctx.fillStyle = s.color;
-      if (prev && streaks && Math.abs(s.x - prev.x) < 120 && Math.abs(s.y - prev.y) < 120) {
+      if (prev && streaks && s.bucket === 2 && Math.abs(s.x - prev.x) < 120 && Math.abs(s.y - prev.y) < 120) {
         ctx.beginPath();
         ctx.moveTo(prev.x, prev.y);
         ctx.lineTo(dx, dy);
         ctx.strokeStyle = s.color;
         ctx.lineWidth = Math.max(0.5, s.size * 0.6);
+        ctx.lineCap = "round";
         ctx.stroke();
       } else {
         ctx.beginPath();
@@ -169,9 +170,9 @@ export function SpaceField() {
 
   return (
     <div ref={wrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 opacity-70" style={{ background: "radial-gradient(58% 48% at 22% 18%, rgba(34,211,238,.16), transparent 70%)" }} />
-      <div className="absolute inset-0 opacity-60" style={{ background: "radial-gradient(52% 44% at 78% 64%, rgba(59,130,246,.14), transparent 70%), radial-gradient(40% 36% at 60% 8%, rgba(217,70,239,.09), transparent 72%)" }} />
-      <canvas ref={canvasRef} className="opacity-50" />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(58% 48% at 22% 18%, rgba(34,211,238,.22), transparent 70%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(52% 44% at 78% 64%, rgba(59,130,246,.18), transparent 70%), radial-gradient(40% 36% at 60% 8%, rgba(217,70,239,.12), transparent 72%)" }} />
+      <canvas ref={canvasRef} className="opacity-80" />
       {planets.map((p, i) => {
         const orchestrator = i === 0;
         const glow = { boxShadow: `0 0 ${p.size / 3}px ${p.color}66` };
@@ -182,7 +183,7 @@ export function SpaceField() {
             onClick={orchestrator ? () => { setSecret((s) => !s); window.dispatchEvent(new CustomEvent("vijay-secret", { detail: "terminal-node" })); } : undefined}
             aria-label={orchestrator ? "The orchestrator node — where the universe converges" : undefined}
             className={`absolute rounded-full ${orchestrator ? "pointer-events-auto cursor-pointer" : ""}`}
-            style={{ width: p.size, height: p.size, left: p.left, top: p.top, opacity: p.opacity, background: `radial-gradient(circle at 50% 45%, ${p.color}cc, ${p.color}00 68%)`, filter: "blur(48px)", ...glow }}
+            style={{ width: p.size, height: p.size, left: p.left, top: p.top, opacity: p.opacity, background: `radial-gradient(circle at 50% 45%, ${p.color}f2, ${p.color}44 55%, ${p.color}00 70%)`, filter: "blur(40px)", ...glow }}
             initial={false}
             animate={reduce ? {} : {
               scale: [1, p.breathe, 1],
