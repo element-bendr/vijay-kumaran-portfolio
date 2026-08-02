@@ -100,41 +100,37 @@ export function WorkBoard() {
   return (
     <motion.div
       animate={controls}
-      className="relative mx-auto w-full max-w-xl border border-cyan/30 bg-dark-soft/70 p-6 shadow-[0_0_20px_-8px_rgba(34,211,238,.35)] backdrop-blur sm:shadow-[0_0_40px_-8px_rgba(34,211,238,.35)]">
-      <div className="mb-4 flex items-center justify-between font-comic text-base text-muted-dark">
-        <span>You are <span className="text-cyan">X</span> · system is <span className="text-blue">O</span></span>
-        <button onClick={reset} className="text-cyan transition-colors hover:text-white">↺ restart</button>
+      className="relative mx-auto w-full max-w-xl border border-white/[0.05] bg-dark-soft/30 p-4 backdrop-blur">
+      <div className="mb-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[.08em] text-muted-dark/50">
+        <span>{!result && (turn === X ? "Your move" : turn === O ? "System thinking…" : "")}</span>
+        <button onClick={reset} className="text-cyan/60 transition-colors hover:text-cyan">restart</button>
       </div>
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-2">
         {board.map((cell, i) => {
           const inWin = result?.cells.includes(i);
           return (
           <motion.div key={i}
             animate={inWin ? { scale: [1, 1.07, 1] } : { scale: 1 }}
             transition={inWin ? { duration: 0.8, repeat: 2, ease: "easeInOut" } : {}}
-            className={`group relative flex aspect-square items-center justify-center border border-dark-line transition-colors ${cell ? "" : "hover:border-cyan"} ${inWin ? "bg-white/[.06]" : ""}`}>
+            className={`group relative flex aspect-square items-center justify-center border transition-colors ${cell ? "border-white/[0.04]" : "border-white/[0.04] hover:border-white/[0.10]"} ${inWin ? "bg-white/[0.03]" : ""}`}>
             {cell ? (
               <motion.span key={cell} initial={{ scale: 0.4, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 320, damping: 18 }}
-                className={`font-comic text-6xl leading-none sm:text-7xl ${cell === X ? "text-cyan" : cell === O ? "text-blue" : ""}`}>{cell}</motion.span>
+                className={`font-mono text-4xl leading-none ${cell === X ? "text-cyan/70" : cell === O ? "text-blue/60" : ""}`}>{cell}</motion.span>
             ) : (
               <button onClick={() => play(i)} className="h-full w-full" aria-label={CELLS[i].title} />
             )}
             {cell && (
               <a href={CELLS[i].href} target={CELLS[i].external ? "_blank" : undefined} rel={CELLS[i].external ? "noreferrer" : undefined}
                 onClick={(e) => e.stopPropagation()}
-                className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-dark/85 opacity-0 transition-opacity duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
-                <span className="p-2 text-center">
-                  <span className="font-comic text-sm text-cyan">{CELLS[i].sub}</span>
-                  <span className="mt-1 block font-comic text-base text-light underline decoration-cyan/40 underline-offset-4">{CELLS[i].title} ↗</span>
+                className="absolute bottom-0 left-0 right-0 flex justify-center group-hover:py-1 transition-all">
+                <span className="font-mono text-[8px] leading-tight tracking-[.04em] text-muted-dark/60 group-hover:text-cyan/60">
+                  {CELLS[i].sub}
                 </span>
               </a>
             )}
           </motion.div>
           );
         })}
-      </div>
-      <div className="mt-4 h-6 text-center font-comic text-base text-muted-dark">
-        {!result && (turn === X ? "Your move — click a cell." : "System is thinking…")}
       </div>
       <AnimatePresence>
         {result && (
@@ -143,7 +139,7 @@ export function WorkBoard() {
             <motion.span key="nova" initial={{ scale: 0.2, opacity: 1 }} animate={{ scale: 2.4, opacity: 0 }} transition={{ duration: 0.9, ease: "easeOut" }}
               className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(circle, rgba(34,211,238,.4), transparent 62%)" }} />
             <motion.span initial={{ scale: 0, rotate: -14 }} animate={{ scale: 1, rotate: -4 }} transition={{ type: "spring", stiffness: 260, damping: 14 }}
-              className={`font-comic text-7xl font-bold tracking-tight drop-shadow-[0_0_18px_rgba(34,211,238,.85)] sm:text-8xl ${STAMP[result.player ?? "D"].className}`}>
+              className={`font-mono text-7xl font-bold tracking-tight drop-shadow-[0_0_18px_rgba(34,211,238,.85)] sm:text-8xl ${STAMP[result.player ?? "D"].className}`}>
               {STAMP[result.player ?? "D"].text}
             </motion.span>
           </motion.div>

@@ -6,6 +6,7 @@ import { HeroScroll } from "@/components/HeroScroll";
 import { CardGlow } from "@/components/CardGlow";
 import { Magnetic } from "@/components/Magnetic";
 import { TrustStrip } from "@/components/TrustStrip";
+import { AskHero } from "@/components/AskHero";
 import { WorkBoard } from "@/components/WorkBoard";
 import { AnimatedArrow, HeroItem, MaskedHeadline, MaskedLine, MotionHero, MotionItem, MotionSection, WordReveal } from "@/components/motion";
 import { projects } from "@/data/projects";
@@ -30,7 +31,7 @@ export default function Home() {
               <HeroItem><div><div className="flex flex-wrap gap-3"><Magnetic><ButtonLink href="/work">View case studies</ButtonLink></Magnetic><Magnetic><ButtonLink href="/about" secondary>Book an audit</ButtonLink></Magnetic></div><p className="mt-7 border-t border-dark-line pt-4 text-sm leading-relaxed text-muted-dark">Proof across Cloudflare agents, AI memory systems, institutional publishing, and production websites.</p></div></HeroItem>
             </div>
           </div>
-          <HeroItem className="justify-self-center"><WorkBoard /></HeroItem>
+          <HeroItem className="justify-self-center"><AskHero /><WorkBoard /></HeroItem>
         </div>
       </MotionHero>
     </HeroScroll>
