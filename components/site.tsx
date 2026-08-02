@@ -7,6 +7,12 @@ import { MotionItem, MotionSection } from "@/components/motion";
 
 const GITHUB_URL = "https://github.com/element-bendr";
 const LINKEDIN_URL = "";
+export const LIVE_SITES = [
+  { name: "Sterling Synergies", url: "https://sterlingsynergies.com" },
+  { name: "Sopranos Inc.", url: "https://sopranosinc.com" },
+  { name: "GreenShoot", url: "https://greenshoot.in" },
+];
+export function LiveSitesStrip() { return <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[.1em] text-muted-dark"><span className="text-slate-400">Live on Cloudflare:</span>{LIVE_SITES.map((s) => <a key={s.url} href={s.url} target="_blank" rel="noreferrer" className="hover:text-cyan">{s.name} ↗</a>)}</div>; }
 export function SectionLabel({ children, light = false }: { children: React.ReactNode; light?: boolean }) { return <p className={`font-mono text-xs uppercase tracking-[.16em] ${light ? "text-muted-light" : "text-cyan"}`}>{children}</p>; }
 const MotionLink = motion.create(Link);
 export function ButtonLink({ href, children, secondary = false, light = false }: { href: string; children: React.ReactNode; secondary?: boolean; light?: boolean }) { return <MotionLink whileHover={{ y: -2 }} transition={{ duration: 0.25, ease: "easeOut" }} href={href} className={`inline-flex items-center justify-center border px-5 py-3 font-mono text-sm tracking-[.02em] transition-colors ${light ? "border-white bg-white text-blue hover:bg-transparent hover:text-white" : secondary ? "border-dark-line text-light hover:border-cyan hover:text-cyan" : "border-blue bg-blue text-white hover:bg-transparent hover:text-blue"}`}>{children}</MotionLink>; }
