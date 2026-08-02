@@ -8,7 +8,7 @@ import { ProgressCounter } from "@/components/ProgressCounter";
 import { RevealToast } from "@/components/RevealToast";
 
 const GITHUB_URL = "https://github.com/element-bendr";
-const LINKEDIN_URL = "";
+const LINKEDIN_URL = "https://www.linkedin.com/in/vijay-kumaran-12792616/";
 export const LIVE_SITES = [
   { name: "Sterling Synergies", url: "https://sterlingsynergies.com" },
   { name: "Sopranos Inc.", url: "https://sopranosinc.com" },
