@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { AskTheWork, ButtonLink, LiveSitesStrip, PageShell, ProjectMark, SectionLabel } from "@/components/site";
-import { HeroMesh } from "@/components/HeroMesh";
+import { SpaceField } from "@/components/SpaceField";
 import { WorkBoard } from "@/components/WorkBoard";
 import { AnimatedArrow, HeroItem, MotionHero, MotionItem, MotionSection } from "@/components/motion";
 import { projects } from "@/data/projects";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return <PageShell>
-    <section className="hero-grid relative overflow-hidden bg-dark text-light"><HeroMesh />
+    <section className="hero-grid relative overflow-hidden bg-dark text-light"><SpaceField />
       <MotionHero className="relative mx-auto max-w-7xl px-6 pb-16 pt-16 sm:px-10 lg:px-16 lg:pb-20 lg:pt-20">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
           <div>

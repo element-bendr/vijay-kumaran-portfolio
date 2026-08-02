@@ -102,7 +102,7 @@ export function WorkBoard() {
       initial={{ opacity: 0, y: 12 }}
       animate={shake > 0 ? { opacity: 1, y: 0, x: [0, -10, 10, -6, 6, 0] } : { opacity: 1, y: 0 }}
       transition={shake > 0 ? { duration: 0.5 } : { delay: 0.5, duration: 0.5 }}
-      className="relative mx-auto w-full max-w-xl border border-dark-line bg-dark-soft/70 p-6 backdrop-blur">
+      className="relative mx-auto w-full max-w-xl border border-cyan/30 bg-dark-soft/70 p-6 shadow-[0_0_20px_-8px_rgba(34,211,238,.35)] backdrop-blur sm:shadow-[0_0_40px_-8px_rgba(34,211,238,.35)]">
       <div className="mb-4 flex items-center justify-between font-comic text-base text-muted-dark">
         <span>You are <span className="text-cyan">X</span> · system is <span className="text-blue">O</span></span>
         <button onClick={reset} className="text-cyan transition-colors hover:text-white">↺ restart</button>
@@ -137,8 +137,10 @@ export function WorkBoard() {
         {result && (
           <motion.div key="stamp" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="absolute inset-0 z-20 flex items-center justify-center bg-dark/70">
+            <motion.span key="nova" initial={{ scale: 0.2, opacity: 1 }} animate={{ scale: 2.4, opacity: 0 }} transition={{ duration: 0.9, ease: "easeOut" }}
+              className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(circle, rgba(34,211,238,.4), transparent 62%)" }} />
             <motion.span initial={{ scale: 0, rotate: -14 }} animate={{ scale: 1, rotate: -4 }} transition={{ type: "spring", stiffness: 260, damping: 14 }}
-              className={`font-comic text-7xl font-bold tracking-tight sm:text-8xl ${STAMP[result.player ?? "D"].className}`}>
+              className={`font-comic text-7xl font-bold tracking-tight drop-shadow-[0_0_18px_rgba(34,211,238,.85)] sm:text-8xl ${STAMP[result.player ?? "D"].className}`}>
               {STAMP[result.player ?? "D"].text}
             </motion.span>
           </motion.div>
