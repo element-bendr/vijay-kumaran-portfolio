@@ -1,7 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ButtonLink, PageShell, ProjectMark, SectionLabel } from "@/components/site";
 import { AnimatedArrow, MotionItem, MotionSection } from "@/components/motion";
 import { projects } from "@/data/projects";
+
+export const metadata: Metadata = {
+  title: "Work",
+  description: "A proof index of systems built for websites, publishing workflows, AI automation, and operational clarity.",
+};
 
 export default function WorkPage() {
   return <PageShell>

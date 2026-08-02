@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { services } from "@/data/services";
+
+export const metadata: Metadata = {
+  title: "Services",
+  description: "Choose the system you need built, cleaned up, or automated: websites, business systems, and AI automations.",
+};
 
 export default function ServicesPage() {
   return <PageShell>

@@ -1,7 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { AskTheWork, ButtonLink, PageShell, ProjectMark, SectionLabel, SystemLines } from "@/components/site";
 import { AnimatedArrow, HeroItem, MotionHero, MotionItem, MotionSection } from "@/components/motion";
 import { projects } from "@/data/projects";
+
+export const metadata: Metadata = {
+  title: "AI Automation & Web Systems Consultant · Vijay Kumaran",
+  description: "Practical websites, business systems, and AI automations that reduce manual work and run reliably every day.",
+};
 
 export default function Home() {
   return <PageShell>

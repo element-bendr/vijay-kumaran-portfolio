@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { MotionItem, MotionSection } from "@/components/motion";
+
+export const metadata: Metadata = {
+  title: "newsharness — News Intelligence Agent",
+  description: "A Cloudflare-native intelligence system for scheduled collection, provider observability, story clustering, and traceable publishing.",
+};
 
 const chips = ["Cloudflare Agents SDK", "Durable Objects", "D1", "R2", "Workers AI", "Evals"];
 const capabilities = ["Scheduled collection", "Provider normalization", "Story clustering", "Article extraction", "Draft generation", "Publishing workflows", "Traceable reporting"];

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { MotionItem, MotionSection } from "@/components/motion";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Vijay Kumaran builds practical websites, business systems, and AI automations that reduce manual work and run reliably every day.",
+};
 
 const stack = ["Next.js", "TypeScript", "Tailwind CSS", "Cloudflare", "D1/R2", "Durable Objects", "Postgres", "pgvector", "AI Workflows", "GitHub"];
 const approach = [["01", "Clarity first", "I start by understanding the real problem, goals, and constraints. Simple scope. Clear outcomes."], ["02", "Reliable systems", "I build systems that are secure, tested, and designed to handle real-world usage."], ["03", "Traceable automation", "Automations should be observable and accountable. I design workflows that are transparent and easy to trust."], ["04", "Maintainable delivery", "Clean code, documentation, and thoughtful handover so the system can keep working after launch."]];
