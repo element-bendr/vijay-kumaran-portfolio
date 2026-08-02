@@ -2,7 +2,7 @@
 
 import { motion, MotionConfig, useReducedMotion, type Variants } from "motion/react";
 
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const reveal: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -47,7 +47,7 @@ export function MotionHero({ children, className }: { children: React.ReactNode;
 export function HeroItem({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.div
-      variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } }}
+      variants={{ hidden: { y: 18 }, show: { y: 0, transition: { duration: 0.6, ease: EASE } } }}
       className={className}
     >
       {children}
@@ -60,5 +60,48 @@ export function AnimatedArrow({ children = "↗" }: { children?: React.ReactNode
     <span aria-hidden className="inline-block transition-transform duration-300 group-hover:translate-x-1">
       {children}
     </span>
+  );
+}
+
+export function MaskedHeadline({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <motion.h1
+      variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
+      className={className}
+    >
+      {children}
+    </motion.h1>
+  );
+}
+
+export function MaskedLine({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="block overflow-hidden">
+      <motion.span
+        variants={{ hidden: { y: "110%" }, show: { y: 0, transition: { duration: 0.6, ease: EASE } } }}
+        className="block"
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
+export function WordReveal({ text, className }: { text: string; className?: string }) {
+  return (
+    <motion.p
+      className={className}
+      variants={{ hidden: {}, show: { transition: { staggerChildren: 0.03 } } }}
+    >
+      {text.split(" ").map((word, i) => (
+        <motion.span
+          key={i}
+          className="inline-block whitespace-pre"
+          variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE } } }}
+        >
+          {word}{" "}
+        </motion.span>
+      ))}
+    </motion.p>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { recordSecret } from "@/src/lib/progress";
+import { EASE } from "@/components/motion";
 
 const SECRETS: Record<string, { icon: string; text: string }> = {
   "terminal-node": { icon: "⌖", text: "You found the orchestrator node." },
@@ -36,5 +37,5 @@ export function RevealToast() {
     return () => clearTimeout(t);
   }, [active]);
 
-  return <AnimatePresence>{active ? <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} className="fixed bottom-5 left-5 z-50 flex items-center gap-3 border border-cyan/40 bg-dark-soft px-4 py-3 font-mono text-xs text-cyan shadow-xl"><span className="text-base leading-none">{SECRETS[active].icon}</span>{SECRETS[active].text}</motion.div> : null}</AnimatePresence>;
+  return <AnimatePresence>{active ? <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: 0.3, ease: EASE }} className="fixed bottom-5 left-5 z-50 flex items-center gap-3 border border-cyan/40 bg-dark-soft px-4 py-3 font-mono text-xs text-cyan shadow-xl"><span className="text-base leading-none">{SECRETS[active].icon}</span>{SECRETS[active].text}</motion.div> : null}</AnimatePresence>;
 }

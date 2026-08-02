@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useAnimationControls } from "motion/react";
 import { recordDraw, recordLoss, recordWin } from "@/src/lib/progress";
 
 const X = "X";
@@ -64,7 +64,7 @@ export function WorkBoard() {
   const [board, setBoard] = useState<Array<Player>>(Array(9).fill(null));
   const [turn, setTurn] = useState<Player>(X);
   const [result, setResult] = useState<{ player: Player; cells: number[] } | null>(null);
-  const [shake, setShake] = useState(0);
+  const controls = useAnimationControls();
 
   const play = (i: number) => {
     if (result || board[i]) return;
@@ -76,7 +76,7 @@ export function WorkBoard() {
     if (w) {
       setResult(w);
       if (w.player === X) recordWin();
-      else if (w.player === O) { recordLoss(); setShake((s) => s + 1); }
+      else if (w.player === O) { recordLoss(); controls.start({ x: [0, -10, 10, -6, 6, 0] }, { duration: 0.5 }); }
       else recordDraw();
     }
   };
@@ -98,10 +98,8 @@ export function WorkBoard() {
   };
 
   return (
-    <motion.div key={shake}
-      initial={{ opacity: 0, y: 12 }}
-      animate={shake > 0 ? { opacity: 1, y: 0, x: [0, -10, 10, -6, 6, 0] } : { opacity: 1, y: 0 }}
-      transition={shake > 0 ? { duration: 0.5 } : { delay: 0.5, duration: 0.5 }}
+    <motion.div
+      animate={controls}
       className="relative mx-auto w-full max-w-xl border border-cyan/30 bg-dark-soft/70 p-6 shadow-[0_0_20px_-8px_rgba(34,211,238,.35)] backdrop-blur sm:shadow-[0_0_40px_-8px_rgba(34,211,238,.35)]">
       <div className="mb-4 flex items-center justify-between font-comic text-base text-muted-dark">
         <span>You are <span className="text-cyan">X</span> · system is <span className="text-blue">O</span></span>
@@ -111,22 +109,27 @@ export function WorkBoard() {
         {board.map((cell, i) => {
           const inWin = result?.cells.includes(i);
           return (
-          <motion.button key={i} onClick={() => play(i)}
+          <motion.div key={i}
             animate={inWin ? { scale: [1, 1.07, 1] } : { scale: 1 }}
-            transition={inWin ? { duration: 0.8, repeat: Infinity, ease: "easeInOut" } : {}}
-            className={`group relative flex aspect-square items-center justify-center border border-dark-line transition-colors ${cell ? "" : "hover:border-cyan"} ${inWin ? "bg-white/[.06]" : ""}`}
-            aria-label={cell ? `cell ${i}, ${cell}` : CELLS[i].title}>
-            <motion.span key={cell ?? `e${i}`} initial={{ scale: 0.4, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 320, damping: 18 }}
-              className={`font-comic text-6xl leading-none sm:text-7xl ${cell === X ? "text-cyan" : cell === O ? "text-blue" : ""}`}>{cell ?? ""}</motion.span>
-            {cell && <span className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-dark/85 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+            transition={inWin ? { duration: 0.8, repeat: 2, ease: "easeInOut" } : {}}
+            className={`group relative flex aspect-square items-center justify-center border border-dark-line transition-colors ${cell ? "" : "hover:border-cyan"} ${inWin ? "bg-white/[.06]" : ""}`}>
+            {cell ? (
+              <motion.span key={cell} initial={{ scale: 0.4, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 320, damping: 18 }}
+                className={`font-comic text-6xl leading-none sm:text-7xl ${cell === X ? "text-cyan" : cell === O ? "text-blue" : ""}`}>{cell}</motion.span>
+            ) : (
+              <button onClick={() => play(i)} className="h-full w-full" aria-label={CELLS[i].title} />
+            )}
+            {cell && (
               <a href={CELLS[i].href} target={CELLS[i].external ? "_blank" : undefined} rel={CELLS[i].external ? "noreferrer" : undefined}
                 onClick={(e) => e.stopPropagation()}
-                className="p-2 text-center">
-                <span className="font-comic text-sm text-cyan">{CELLS[i].sub}</span>
-                <span className="mt-1 block font-comic text-base text-light underline decoration-cyan/40 underline-offset-4">{CELLS[i].title} ↗</span>
+                className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-dark/85 opacity-0 transition-opacity duration-200 group-hover:pointer-events-auto group-hover:opacity-100">
+                <span className="p-2 text-center">
+                  <span className="font-comic text-sm text-cyan">{CELLS[i].sub}</span>
+                  <span className="mt-1 block font-comic text-base text-light underline decoration-cyan/40 underline-offset-4">{CELLS[i].title} ↗</span>
+                </span>
               </a>
-            </span>}
-          </motion.button>
+            )}
+          </motion.div>
           );
         })}
       </div>

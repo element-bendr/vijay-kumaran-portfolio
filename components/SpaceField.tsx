@@ -15,6 +15,7 @@ const BUCKETS = [
 ];
 
 type Star = { x: number; y: number; vx: number; vy: number; size: number; opacity: number; color: string; bucket: number; par: number; phase: number; tw: number };
+type Planet = { color: string; size: number; left: string; top: string; opacity: number; drift: readonly [number, number]; breathe: number };
 
 const PLANETS = [
   { color: "#22D3EE", size: 420, left: "6%", top: "22%", opacity: 0.3, drift: [22, -16] as const, breathe: 1.12 },
@@ -27,6 +28,13 @@ export function SpaceField() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [secret, setSecret] = useState(false);
+  const [planets, setPlanets] = useState<Planet[]>(PLANETS);
+
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      setPlanets(PLANETS.slice(0, 2).map((p) => ({ ...p, size: p.size * 0.6, opacity: p.opacity * 0.7, drift: [0, 0], breathe: p.breathe * 0.6 + 1 })));
+    }
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -40,7 +48,9 @@ export function SpaceField() {
     const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2);
     const COUNT = mobile ? 80 : 200;
     const streaks = !mobile && !reduce;
-    let mx = 0, my = 0;
+    let mx = 0, my = 0, tx = 0, ty = 0;
+    let meteor: null | { x: number; y: number; vx: number; vy: number; life: number } = null;
+    let nextMeteor = performance.now() + rand(8000, 15000);
 
     let w = 0, h = 0;
     const resize = () => {
@@ -111,6 +121,9 @@ export function SpaceField() {
       for (const s of stars) draw(s, t);
     };
 
+    const onResize = () => { resize(); stars = []; BUCKETS.forEach((b, i) => { for (let n = Math.round(COUNT * b.ratio); n > 0; n--) stars.push(makeStar(i)); }); render(); };
+    window.addEventListener("resize", onResize);
+
     if (reduce) {
       render();
       return;
@@ -124,6 +137,34 @@ export function SpaceField() {
       last = now;
       const t = now / 1000;
       ctx.clearRect(0, 0, w, h);
+      mx += (tx - mx) * 0.06;
+      my += (ty - my) * 0.06;
+      if (!mobile && !reduce) {
+        if (!meteor && now >= nextMeteor) {
+          const angle = Math.PI * 0.25 + rand(-0.2, 0.2);
+          const speed = rand(300, 600);
+          meteor = { x: rand(0, w), y: rand(0, h * 0.5), vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, life: 1 };
+          nextMeteor = now + rand(8000, 15000);
+        }
+        if (meteor) {
+          meteor.x += meteor.vx * dt;
+          meteor.y += meteor.vy * dt;
+          meteor.life -= dt * 1.5;
+          if (meteor.life <= 0 || meteor.x < -40 || meteor.y < -40 || meteor.x > w + 40 || meteor.y > h + 40) meteor = null;
+          else {
+            ctx.save();
+            ctx.globalAlpha = meteor.life;
+            ctx.strokeStyle = "#FFFFFF";
+            ctx.lineWidth = 1.5;
+            ctx.lineCap = "round";
+            ctx.beginPath();
+            ctx.moveTo(meteor.x, meteor.y);
+            ctx.lineTo(meteor.x - meteor.vx * 0.03, meteor.y - meteor.vy * 0.03);
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+      }
       for (const s of stars) {
         const prev = { x: s.x + mx * s.par, y: s.y + my * s.par };
         s.x += s.vx * dt;
@@ -143,16 +184,14 @@ export function SpaceField() {
     document.addEventListener("visibilitychange", onVis);
     const onMove = (e: MouseEvent) => {
       const r = wrap.getBoundingClientRect();
-      mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
     };
-    const onLeave = () => { mx = 0; my = 0; };
+    const onLeave = () => { tx = 0; ty = 0; };
     if (!mobile && !reduce) {
       wrap.addEventListener("mousemove", onMove);
       wrap.addEventListener("mouseleave", onLeave);
     }
-    const onResize = () => { resize(); stars = []; BUCKETS.forEach((b, i) => { for (let n = Math.round(COUNT * b.ratio); n > 0; n--) stars.push(makeStar(i)); }); render(); };
-    window.addEventListener("resize", onResize);
 
     start();
 
@@ -166,41 +205,35 @@ export function SpaceField() {
     };
   }, [reduce]);
 
-  const planets = mobilePlanets(PLANETS);
-
   return (
     <div ref={wrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <div className="absolute inset-0" style={{ background: "radial-gradient(58% 48% at 22% 18%, rgba(34,211,238,.22), transparent 70%)" }} />
       <div className="absolute inset-0" style={{ background: "radial-gradient(52% 44% at 78% 64%, rgba(59,130,246,.18), transparent 70%), radial-gradient(40% 36% at 60% 8%, rgba(217,70,239,.12), transparent 72%)" }} />
-      <canvas ref={canvasRef} className="opacity-80" />
-      {planets.map((p, i) => {
-        const orchestrator = i === 0;
-        const glow = { boxShadow: `0 0 ${p.size / 3}px ${p.color}66` };
-        return (
-          <motion.button
-            key={i}
-            type="button"
-            onClick={orchestrator ? () => { setSecret((s) => !s); window.dispatchEvent(new CustomEvent("vijay-secret", { detail: "terminal-node" })); } : undefined}
-            aria-label={orchestrator ? "The orchestrator node — where the universe converges" : undefined}
-            className={`absolute rounded-full ${orchestrator ? "pointer-events-auto cursor-pointer" : ""}`}
-            style={{ width: p.size, height: p.size, left: p.left, top: p.top, opacity: p.opacity, background: `radial-gradient(circle at 50% 45%, ${p.color}f2, ${p.color}44 55%, ${p.color}00 70%)`, filter: "blur(40px)", ...glow }}
-            initial={false}
-            animate={reduce ? {} : {
-              scale: [1, p.breathe, 1],
-              x: p.drift[0],
-              y: p.drift[1],
-              ...(orchestrator && secret ? { opacity: [p.opacity, p.opacity + 0.15, p.opacity] } : {}),
-            }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
-          />
-        );
-      })}
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }}>
+        <canvas ref={canvasRef} className="opacity-80" />
+        {planets.map((p, i) => {
+          const orchestrator = i === 0;
+          return (
+            <motion.button
+              key={i}
+              type="button"
+              onClick={orchestrator ? () => { setSecret((s) => !s); window.dispatchEvent(new CustomEvent("vijay-secret", { detail: "terminal-node" })); } : undefined}
+              aria-label={orchestrator ? "The orchestrator node — where the universe converges" : undefined}
+              className={`absolute rounded-full ${orchestrator ? "pointer-events-auto cursor-pointer" : ""}`}
+              style={{ width: p.size, height: p.size, left: p.left, top: p.top, opacity: p.opacity, background: `radial-gradient(circle at 50% 45%, ${p.color}f2, ${p.color}44 45%, ${p.color}00 65%)` }}
+              initial={false}
+              animate={reduce ? {} : {
+                scale: [1, p.breathe, 1],
+                x: [0, p.drift[0], 0],
+                y: [0, p.drift[1], 0],
+                ...(orchestrator && secret ? { opacity: [p.opacity, p.opacity + 0.15, p.opacity] } : {}),
+              }}
+              transition={{ duration: 7 + i * 2, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
+            />
+          );
+        })}
+      </motion.div>
     </div>
   );
 }
 
-function mobilePlanets(ps: typeof PLANETS) {
-  return typeof window !== "undefined" && window.matchMedia("(max-width: 640px)").matches
-    ? ps.slice(0, 2).map((p) => ({ ...p, size: p.size * 0.6, opacity: p.opacity * 0.7, drift: [0, 0] as const, breathe: p.breathe * 0.6 + 1 }))
-    : ps;
-}

@@ -3,7 +3,8 @@
 import { useCallback, useRef, useState } from "react";
 import { marked } from "marked";
 import DOMPurify from "dompurify";
-import { AnimatedArrow, MotionItem, MotionSection } from "@/components/motion";
+import { AnimatePresence, motion } from "motion/react";
+import { AnimatedArrow, EASE, MotionItem, MotionSection } from "@/components/motion";
 import { SectionLabel } from "@/components/site";
 
 type Source = {
@@ -175,8 +176,9 @@ export function AskTheWork() {
             <h2 className="display mt-6 text-5xl sm:text-6xl">Ask about the work.</h2>
           </MotionItem>
 
+          <AnimatePresence mode="wait">
           {state.type === "idle" && (
-            <>
+            <motion.div key="idle" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }}>
               <MotionItem>
                 <p className="mt-6 text-lg leading-relaxed text-muted-light">
                   Ask focused questions about the projects, stack, and proof behind this portfolio.
@@ -218,11 +220,11 @@ export function AskTheWork() {
                   </MotionItem>
                 ))}
               </div>
-            </>
+            </motion.div>
           )}
 
           {state.type === "loading" && (
-            <div className="mt-10">
+            <motion.div key="loading" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }} className="mt-10">
               <div className="flex items-center gap-4">
                 <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-cyan" />
                 <span className="font-mono text-sm text-muted-light">Checking the work…</span>
@@ -233,26 +235,37 @@ export function AskTheWork() {
               <p className="mt-4 text-sm italic text-muted-light/70">
                 &ldquo;{question}&rdquo;
               </p>
-            </div>
+            </motion.div>
           )}
 
           {state.type === "answer" && (
-            <div className="mt-10">
-              <div
-                className="prose max-w-none text-ink prose-a:text-blue [&_pre]:bg-dark-soft [&_pre]:text-light [&_pre]:p-4 [&_pre]:text-xs [&_code]:bg-dark-soft/10 [&_code]:px-1 [&_code]:text-xs"
-                dangerouslySetInnerHTML={{ __html: md(stripSourcesSection(state.answer)) }}
-              />
+            <motion.div key="answer" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }} className="mt-10">
+              <span className="block overflow-hidden">
+                <motion.div
+                  initial={{ y: "20%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.05, ease: EASE }}
+                  className="prose max-w-none text-ink prose-a:text-blue [&_pre]:bg-dark-soft [&_pre]:text-light [&_pre]:p-4 [&_pre]:text-xs [&_code]:bg-dark-soft/10 [&_code]:px-1 [&_code]:text-xs"
+                  dangerouslySetInnerHTML={{ __html: md(stripSourcesSection(state.answer)) }}
+                />
+              </span>
               {state.sources.length > 0 && (
-                <div className="mt-6 grid gap-2 sm:grid-cols-2">
+                <motion.div
+                  className="mt-6 grid gap-2 sm:grid-cols-2"
+                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
+                  initial="hidden"
+                  animate="show"
+                >
                   {state.sources.map((s) => {
                     const href = resolveSourceHref(s);
                     const external = href.startsWith("http");
                     return (
-                      <a
+                      <motion.a
                         key={s.label + s.project}
                         href={href}
                         target={external ? "_blank" : undefined}
                         rel={external ? "noreferrer" : undefined}
+                        variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } } }}
                         className="group flex items-center justify-between gap-3 border border-light-line bg-white px-4 py-3 transition-colors hover:border-cyan/60"
                       >
                         <div className="min-w-0">
@@ -264,10 +277,10 @@ export function AskTheWork() {
                         <span className="shrink-0 font-mono text-xs text-blue transition-transform group-hover:translate-x-0.5">
                           open ↗
                         </span>
-                      </a>
+                      </motion.a>
                     );
                   })}
-                </div>
+                </motion.div>
               )}
               {state.relatedProjects.length > 0 && (
                 <div className="mt-3 flex flex-wrap gap-2 font-mono text-xs text-muted-light">
@@ -292,11 +305,11 @@ export function AskTheWork() {
               <button onClick={reset} className="mt-6 font-mono text-sm tracking-[.02em] text-blue hover:underline">
                 Ask another question <AnimatedArrow />
               </button>
-            </div>
+            </motion.div>
           )}
 
           {state.type === "refused" && (
-            <div className="mt-10 border border-light-line bg-white p-6">
+            <motion.div key="refused" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }} className="mt-10 border border-light-line bg-white p-6">
               <p className="text-base leading-relaxed text-muted-light">
                 I don&apos;t have enough indexed evidence to answer that.
               </p>
@@ -306,11 +319,11 @@ export function AskTheWork() {
               <button onClick={reset} className="mt-4 font-mono text-sm tracking-[.02em] text-blue hover:underline">
                 Ask another question <AnimatedArrow />
               </button>
-            </div>
+            </motion.div>
           )}
 
           {state.type === "error" && (
-            <div className="mt-10 border border-red-200 bg-red-50 p-6">
+            <motion.div key="error" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }} className="mt-10 border border-red-200 bg-red-50 p-6">
               <p className="text-base leading-relaxed text-red-700">{state.message}</p>
               <div className="mt-4 flex gap-3">
                 <button onClick={() => submit(question)} className="font-mono text-sm tracking-[.02em] text-red-700 hover:underline">
@@ -320,8 +333,9 @@ export function AskTheWork() {
                   New question
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
         </MotionSection>
       </div>
     </section>
