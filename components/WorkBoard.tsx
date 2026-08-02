@@ -15,7 +15,7 @@ const CELLS: Array<{ title: string; sub: string; href: string; external?: boolea
   { title: "SteelMade", sub: "Brand website", href: "/work/steelmade" },
   { title: "ChronoQuill", sub: "Publishing automation", href: "/work/chronoquill" },
   { title: "ArtSports Content OS", sub: "Content operations", href: "/work/artsports-content-os" },
-  { title: "Mnemos", sub: "Knowledge system", href: "/work/mnemos" },
+  { title: "Mnemos", sub: "Governed memory", href: "/work/mnemos" },
   { title: "Book an audit", sub: "→ about", href: "/about#contact" },
   { title: "Ask the work", sub: "→ ask", href: "/#ask" },
 ];

@@ -35,7 +35,7 @@ export function unlockedCount(p: Progress): number {
 }
 
 export function totalCount(): number {
-  return CASE_STUDIES.length + 4;
+  return CASE_STUDIES.length + 3;
 }
 
 export function recordVisit(slug: string): Progress {
