@@ -155,7 +155,7 @@ export function AskTheWork() {
   }, []);
 
   return (
-    <section className="border-b border-light-line bg-light text-ink">
+    <section id="ask" className="border-b border-light-line bg-light text-ink">
       <div className="relative mx-auto max-w-7xl px-6 py-24 sm:px-10 lg:px-16">
         {/* ponytail: static decorative SVG — same as original teaser but not interactive */}
         <div aria-hidden className="pointer-events-none absolute right-[8%] top-1/2 hidden -translate-y-1/2 lg:block">
