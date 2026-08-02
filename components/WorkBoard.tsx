@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { recordDraw, recordLoss, recordWin } from "@/src/lib/progress";
 
 const X = "X";
@@ -54,10 +54,17 @@ const bestMove = (b: Array<Player>) => {
   return empty[Math.floor(Math.random() * empty.length)];
 };
 
+const STAMP: Record<string, { text: string; className: string }> = {
+  X: { text: "YOU WIN!", className: "text-cyan" },
+  O: { text: "SYSTEM WINS", className: "text-blue" },
+  D: { text: "DRAW", className: "text-muted-light" },
+};
+
 export function WorkBoard() {
   const [board, setBoard] = useState<Array<Player>>(Array(9).fill(null));
   const [turn, setTurn] = useState<Player>(X);
   const [result, setResult] = useState<{ player: Player; cells: number[] } | null>(null);
+  const [shake, setShake] = useState(0);
 
   const play = (i: number) => {
     if (result || board[i]) return;
@@ -69,7 +76,7 @@ export function WorkBoard() {
     if (w) {
       setResult(w);
       if (w.player === X) recordWin();
-      else if (w.player === O) recordLoss();
+      else if (w.player === O) { recordLoss(); setShake((s) => s + 1); }
       else recordDraw();
     }
   };
@@ -91,35 +98,52 @@ export function WorkBoard() {
   };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5 }}
-      className="mx-auto w-full max-w-md border border-dark-line bg-dark-soft/70 p-4 backdrop-blur">
-      <div className="mb-3 flex items-center justify-between font-mono text-[11px] uppercase tracking-[.18em] text-muted-dark">
+    <motion.div key={shake}
+      initial={{ opacity: 0, y: 12 }}
+      animate={shake > 0 ? { opacity: 1, y: 0, x: [0, -10, 10, -6, 6, 0] } : { opacity: 1, y: 0 }}
+      transition={shake > 0 ? { duration: 0.5 } : { delay: 0.5, duration: 0.5 }}
+      className="relative mx-auto w-full max-w-xl border border-dark-line bg-dark-soft/70 p-6 backdrop-blur">
+      <div className="mb-4 flex items-center justify-between font-comic text-base text-muted-dark">
         <span>You are <span className="text-cyan">X</span> · system is <span className="text-blue">O</span></span>
         <button onClick={reset} className="text-cyan transition-colors hover:text-white">↺ restart</button>
       </div>
-      <div className="grid grid-cols-3 gap-2">
-        {board.map((cell, i) => (
-          <button key={i} onClick={() => play(i)}
-            className={`group relative flex aspect-square items-center justify-center border border-dark-line transition-colors ${cell ? "" : "hover:border-cyan"} ${result?.cells.includes(i) ? "bg-white/[.04]" : ""}`}
+      <div className="grid grid-cols-3 gap-3">
+        {board.map((cell, i) => {
+          const inWin = result?.cells.includes(i);
+          return (
+          <motion.button key={i} onClick={() => play(i)}
+            animate={inWin ? { scale: [1, 1.07, 1] } : { scale: 1 }}
+            transition={inWin ? { duration: 0.8, repeat: Infinity, ease: "easeInOut" } : {}}
+            className={`group relative flex aspect-square items-center justify-center border border-dark-line transition-colors ${cell ? "" : "hover:border-cyan"} ${inWin ? "bg-white/[.06]" : ""}`}
             aria-label={cell ? `cell ${i}, ${cell}` : CELLS[i].title}>
-            <span className={`font-mono text-3xl leading-none ${cell === X ? "text-cyan" : cell === O ? "text-blue" : ""}`}>{cell ?? ""}</span>
+            <motion.span key={cell ?? `e${i}`} initial={{ scale: 0.4, rotate: -12 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 320, damping: 18 }}
+              className={`font-comic text-6xl leading-none sm:text-7xl ${cell === X ? "text-cyan" : cell === O ? "text-blue" : ""}`}>{cell ?? ""}</motion.span>
             {cell && <span className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-dark/85 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
               <a href={CELLS[i].href} target={CELLS[i].external ? "_blank" : undefined} rel={CELLS[i].external ? "noreferrer" : undefined}
                 onClick={(e) => e.stopPropagation()}
                 className="p-2 text-center">
-                <span className="font-mono text-[10px] uppercase tracking-[.14em] text-cyan">{CELLS[i].sub}</span>
-                <span className="mt-1 block text-xs text-light underline decoration-cyan/40 underline-offset-4">{CELLS[i].title} ↗</span>
+                <span className="font-comic text-sm text-cyan">{CELLS[i].sub}</span>
+                <span className="mt-1 block font-comic text-base text-light underline decoration-cyan/40 underline-offset-4">{CELLS[i].title} ↗</span>
               </a>
             </span>}
-          </button>
-        ))}
+          </motion.button>
+          );
+        })}
       </div>
-      <div className="mt-3 h-5 text-center font-mono text-xs text-muted-dark">
-        {result ? (result.player === X ? <span className="text-cyan">You win — systems still need a human.</span>
-          : result.player === O ? <span className="text-blue">System wins — but it was built by a human.</span>
-          : <span className="text-muted-light">Draw — the work is the point.</span>)
-          : turn === X ? "Your move — click a cell." : "System is thinking…"}
+      <div className="mt-4 h-6 text-center font-comic text-base text-muted-dark">
+        {!result && (turn === X ? "Your move — click a cell." : "System is thinking…")}
       </div>
+      <AnimatePresence>
+        {result && (
+          <motion.div key="stamp" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="absolute inset-0 z-20 flex items-center justify-center bg-dark/70">
+            <motion.span initial={{ scale: 0, rotate: -14 }} animate={{ scale: 1, rotate: -4 }} transition={{ type: "spring", stiffness: 260, damping: 14 }}
+              className={`font-comic text-7xl font-bold tracking-tight sm:text-8xl ${STAMP[result.player ?? "D"].className}`}>
+              {STAMP[result.player ?? "D"].text}
+            </motion.span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
