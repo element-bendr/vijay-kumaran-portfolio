@@ -1,5 +1,0 @@
-name = "vijay-kumaran-portfolio"
-compatibility_date = "2025-01-01"
-pages_build_output_dir = "out"
-
-# Static export deploy: next build && wrangler pages deploy out --project-name vijay-kumaran-portfolio-ask
