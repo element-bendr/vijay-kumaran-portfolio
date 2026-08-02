@@ -19,6 +19,12 @@ const PATH_TO_ROUTE: Record<string, string> = {
   "data/services.ts": "/services",
   "data/projects.ts": "/work",
   "app/work/newsharness/page.tsx": "/work/newsharness",
+  "app/work/memory-os/page.tsx": "/work/memory-os",
+  "app/work/kpdc-trifecta/page.tsx": "/work/kpdc-trifecta",
+  "app/work/steelmade/page.tsx": "/work/steelmade",
+  "app/work/chronoquill/page.tsx": "/work/chronoquill",
+  "app/work/artsports-content-os/page.tsx": "/work/artsports-content-os",
+  "app/work/mnemos/page.tsx": "/work/mnemos",
 };
 
 function resolveSourceHref(s: Source): string {

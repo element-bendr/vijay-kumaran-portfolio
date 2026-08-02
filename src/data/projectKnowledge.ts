@@ -18,7 +18,8 @@ export const projectKnowledge: ProjectKnowledgeRecord[] = [
     content:
       "Vijay Kumaran is an AI Automation & Web Systems Consultant who builds practical websites, business systems, and AI automations that reduce manual work and run reliably every day. He works with Next.js, TypeScript, Tailwind CSS, Cloudflare (Workers, D1, R2, Durable Objects), Postgres, pgvector, and AI workflows. His approach: clarity first — understand the real problem, goals, and constraints before building. Reliable systems — secure, tested, and designed for real-world usage. Traceable automation — observable, accountable workflows. Maintainable delivery — clean code, documentation, and thoughtful handover. Available for selected projects. Contact: element.bendr@gmail.com.",
     sources: [
-      { label: "About page", path: "app/about/page.tsx" },
+      { label: "AI Automation Case Studies", url: "https://github.com/element-bendr/ai-automation-case-studies" },
+      { label: "Mnemos case study", path: "app/work/mnemos/page.tsx" },
     ],
   },
   {
@@ -129,7 +130,8 @@ export const projectKnowledge: ProjectKnowledgeRecord[] = [
     content:
       "Mnemos is a practical knowledge system designed to preserve durable project context and support evidence-rich handoffs between development sessions. Built on Memory OS principles, Mnemos captures project knowledge in a retrievable, versioned format so that context does not degrade between work sessions or team transitions. It integrates with Postgres for structured storage and supports retrieval workflows that help agents and developers surface relevant context quickly. The system emphasizes evidence: every decision, task state, and handoff artifact links back to its source, making it traceable and reviewable. What this proves: durable project context is achievable with structured knowledge systems, evidence-rich handoffs reduce onboarding and context-switching costs, and retrieval workflows make project knowledge actionable rather than archival. Stack: Memory OS, Postgres, Retrieval, Review control.",
     sources: [
-      { label: "Projects data", path: "data/projects.ts" },
+      { label: "AI Automation Case Studies", url: "https://github.com/element-bendr/ai-automation-case-studies" },
+      { label: "memory-os case study", path: "app/work/memory-os/page.tsx" },
     ],
   },
   {
@@ -171,6 +173,7 @@ export const projectKnowledge: ProjectKnowledgeRecord[] = [
       { label: "AI Automation Case Studies", url: "https://github.com/element-bendr/ai-automation-case-studies" },
       { label: "Live site — KP College", url: "https://www.kpcollege.in/" },
       { label: "Live site — KP Law College", url: "https://kalyanipatillawcollege.in/" },
+      { label: "KPDC / Trifecta case study", path: "app/work/kpdc-trifecta/page.tsx" },
     ],
   },
   {
@@ -186,6 +189,7 @@ export const projectKnowledge: ProjectKnowledgeRecord[] = [
       { label: "AI Automation Case Studies", url: "https://github.com/element-bendr/ai-automation-case-studies" },
       { label: "Live site", url: "https://steelmade.co.in/" },
       { label: "GitHub", url: "https://github.com/element-bendr/steelmade-cloudiary" },
+      { label: "SteelMade case study", path: "app/work/steelmade/page.tsx" },
     ],
   },
   {
@@ -200,6 +204,7 @@ export const projectKnowledge: ProjectKnowledgeRecord[] = [
     sources: [
       { label: "AI Automation Case Studies", url: "https://github.com/element-bendr/ai-automation-case-studies" },
       { label: "GitHub", url: "https://github.com/element-bendr/chronoquill" },
+      { label: "ChronoQuill case study", path: "app/work/chronoquill/page.tsx" },
     ],
   },
   {
@@ -213,6 +218,7 @@ export const projectKnowledge: ProjectKnowledgeRecord[] = [
       "ArtSports Content OS is a structured content planning and caption-generation workflow for Instagram. Problem: manual content planning creates inconsistent output, missed schedules, and weak review control. What it does: uses deterministic calendar planning, YAML schemas, prompt compilation, bounded LLM captions, deterministic fallbacks, validation, retries, manifests, and daily briefs. What this proves: AI-assisted content operations, human-reviewable outputs, structured planning, deterministic generation discipline, and operator-friendly briefs. Status: Built content workflow system. The repository is private. This public case study is sanitized.",
     sources: [
       { label: "AI Automation Case Studies", url: "https://github.com/element-bendr/ai-automation-case-studies" },
+      { label: "ArtSports Content OS case study", path: "app/work/artsports-content-os/page.tsx" },
     ],
   },
   {
