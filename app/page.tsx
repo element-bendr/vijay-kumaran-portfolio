@@ -26,6 +26,7 @@ export default function Home() {
             <HeroItem><SectionLabel>AI Automation &amp; Web Systems Consultant</SectionLabel></HeroItem>
             <HeroItem><p className="mt-1 max-w-md font-mono text-[13px] leading-relaxed tracking-[.01em] text-muted-dark">Orchestrating systems. Automating the routine. Building what runs every day.</p></HeroItem>
             <HeroItem><MaskedHeadline className="display mt-7 max-w-5xl text-[clamp(3.5rem,7.4vw,7.5rem)] leading-[.92]"><MaskedLine>Websites.</MaskedLine><MaskedLine>Business systems.</MaskedLine><MaskedLine><span className="text-cyan">AI automations.</span></MaskedLine></MaskedHeadline></HeroItem>
+            <HeroItem><h2 className="mt-4 max-w-3xl font-mono text-xl leading-relaxed tracking-tight text-muted-dark">AI automation consultant — practical systems for businesses and brands</h2></HeroItem>
             <div className="mt-10 max-w-2xl">
               <HeroItem><WordReveal text="Built to reduce manual work." className="text-2xl leading-tight text-slate-200 sm:text-3xl" /></HeroItem>
               <HeroItem><p className="mt-5 text-base leading-relaxed text-muted-dark">I build practical web systems, admin workflows, and AI automations that run reliably every day.</p></HeroItem>

@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   },
   description: "Practical websites, business systems, and AI automations that reduce manual work and run reliably every day.",
   icons: { icon: "/icon.svg" },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: "/",
@@ -28,6 +29,10 @@ export const metadata: Metadata = {
     title: "Vijay Kumaran — AI Automation & Web Systems Consultant",
     description: "Practical websites, business systems, and AI automations that reduce manual work and run reliably every day.",
     images: ["/og.png"],
+  },
+  other: {
+    "geo.region": "IN-MH",
+    "geo.placename": "Mumbai",
   },
 };
 
@@ -52,6 +57,15 @@ const jsonLd = {
       image: `${SITE_URL}/og.png`,
       description: "Consulting for websites, business systems, and AI automations.",
       areaServed: "Worldwide",
+      location: {
+        "@type": "Place",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Mumbai",
+          addressRegion: "Maharashtra",
+          addressCountry: "IN",
+        },
+      },
       makesOffer: [
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website design & development" } },
         { "@type": "Offer", itemOffered: { "@type": "Service", name: "Business systems & admin workflows" } },
