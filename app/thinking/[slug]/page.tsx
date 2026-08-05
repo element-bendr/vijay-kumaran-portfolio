@@ -5,8 +5,7 @@ import { PageShell, SectionLabel } from "@/components/site";
 import { AnimatedArrow, MaskedHeadline, MaskedLine, MotionItem } from "@/components/motion";
 import { posts } from "@/data/posts";
 import { createMetadata } from "@/src/lib/seo";
-
-const SITE_URL = "https://vijay-kumaran-portfolio-ask.pages.dev";
+import { SITE_URL } from "@/src/lib/identity";
 
 const RELATED: Record<string, Array<{ name: string; href: string }>> = {
   "cloudflare-native-news-intelligence-agent": [{ name: "newsharness", href: "/work/newsharness" }],

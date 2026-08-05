@@ -63,4 +63,12 @@ for (const quote of ["Rebuilt our online presence", "Professional site that actu
 }
 assert.match(homepage, /"@type":"Person"/, "homepage: Person schema");
 assert.match(homepage, /"@type":"ProfessionalService"/, "homepage: ProfessionalService schema");
+const homepageSchemas = [...homepage.matchAll(/<script type="application\/ld\+json">([^<]+)<\/script>/gi)].map(([, json]) => JSON.parse(json));
+const homepageNodes = homepageSchemas.flatMap((schema) => schema["@graph"] ?? [schema]);
+const websites = homepageNodes.filter((schema) => schema["@type"] === "WebSite");
+const people = homepageNodes.filter((schema) => schema["@type"] === "Person");
+assert.equal(websites.length, 1, "homepage: exactly one WebSite");
+assert.deepEqual({ name: websites[0].name, url: websites[0].url }, { name: "Vijay Kumaran", url: siteUrl }, "homepage: WebSite identity");
+assert.equal(people.length, 1, "homepage: exactly one Person");
+assert.deepEqual(people[0].sameAs, ["https://github.com/element-bendr", "https://www.linkedin.com/in/vijay-kumaran-12792616/"], "homepage: Person sameAs");
 console.log(`metadata check passed for ${routes.length} sitemap routes`);

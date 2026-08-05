@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-
-const SITE_URL = "https://vijay-kumaran-portfolio-ask.pages.dev";
+import { SITE_URL } from "@/src/lib/identity";
 const IMAGE = {
   url: "/og.png",
   width: 1200,

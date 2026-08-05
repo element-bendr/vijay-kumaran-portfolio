@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { MotionProvider } from "@/components/motion";
+import { GITHUB_URL, LINKEDIN_URL, SITE_URL } from "@/src/lib/identity";
 import "./globals.css";
-
-const SITE_URL = "https://vijay-kumaran-portfolio-ask.pages.dev";
 
 // ponytail: PostHog key + host — NEXT_PUBLIC_ vars are inlined at build time for static export; empty key disables analytics
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "";
@@ -45,9 +44,16 @@ const jsonLd = {
       name: "Vijay Kumaran",
       url: SITE_URL,
       image: `${SITE_URL}/og.png`,
+      sameAs: [GITHUB_URL, LINKEDIN_URL],
       jobTitle: "AI Automation & Web Systems Consultant",
       description: "Practical websites, business systems, and AI automations that reduce manual work and run reliably every day.",
       knowsAbout: ["Web development", "AI automation", "Business systems", "Cloudflare", "Next.js"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Vijay Kumaran",
+      url: SITE_URL,
     },
     {
       "@type": "ProfessionalService",
