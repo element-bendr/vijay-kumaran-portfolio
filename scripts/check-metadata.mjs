@@ -56,4 +56,11 @@ for (const file of ["out/thinking/cloudflare-native-news-intelligence-agent.html
 }
 
 assert.match(fs.readFileSync(path.join(root, "out/404.html"), "utf8"), /noindex/i, "404: expected noindex");
+const homepage = fs.readFileSync(path.join(root, "out/index.html"), "utf8");
+assert.doesNotMatch(homepage, /Review|reviewBody|reviewRating|aggregateRating/i, "homepage: no review schema");
+for (const quote of ["Rebuilt our online presence", "Professional site that actually brings in leads", "No maintenance headaches"]) {
+  assert.match(homepage, new RegExp(quote), `homepage: visible quote ${quote}`);
+}
+assert.match(homepage, /"@type":"Person"/, "homepage: Person schema");
+assert.match(homepage, /"@type":"ProfessionalService"/, "homepage: ProfessionalService schema");
 console.log(`metadata check passed for ${routes.length} sitemap routes`);

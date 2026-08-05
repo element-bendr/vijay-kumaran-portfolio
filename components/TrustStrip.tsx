@@ -11,19 +11,8 @@ const TRUST = [
 ];
 
 export function TrustStrip() {
-  const reviewSchema = {
-    "@context": "https://schema.org",
-    "@graph": TRUST.map((t) => ({
-      "@type": "Review",
-      author: { "@type": "Organization", name: t.name },
-      reviewBody: t.quote,
-      itemReviewed: { "@type": "Organization", name: "Vijay Kumaran — AI Automation & Web Systems Consulting" },
-    })),
-  };
-
   return (
     <section className="border-b border-dark-line bg-dark-soft text-light">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
       <div className="mx-auto max-w-7xl px-6 py-10 sm:px-10 lg:px-16">
         <motion.div
           initial="hidden"
