@@ -11,11 +11,9 @@ import { ProjectThumb } from "@/components/ProjectThumb";
 import { WorkBoard } from "@/components/WorkBoard";
 import { AnimatedArrow, HeroItem, MaskedHeadline, MaskedLine, MotionHero, MotionItem, MotionSection, WordReveal } from "@/components/motion";
 import { projects } from "@/data/projects";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "AI Automation & Web Systems Consultant · Vijay Kumaran",
-  description: "Practical websites, business systems, and AI automations that reduce manual work and run reliably every day.",
-};
+export const metadata: Metadata = createMetadata({ path: "/", title: "AI Automation & Web Systems Consultant · Vijay Kumaran", description: "Practical websites, business systems, and AI automations that reduce manual work and run reliably every day." });
 
 export default function Home() {
   return <PageShell>

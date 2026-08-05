@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { MaskedHeadline, MaskedLine, MotionItem, MotionSection } from "@/components/motion";
 import { services } from "@/data/services";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
-  description: "Choose the system you need built, cleaned up, or automated: websites, business systems, and AI automations.",
-};
+export const metadata: Metadata = createMetadata({ path: "/services", title: "Services", description: "Choose the system you need built, cleaned up, or automated: websites, business systems, and AI automations." });
 
 export default function ServicesPage() {
   return <PageShell>

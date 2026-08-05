@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { TrackVisit } from "@/components/TrackVisit";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { CaseStudyMeta } from "@/components/CaseStudyMeta";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Mnemos — Governed AI Memory Prototype",
-  description: "A governed AI memory system for reviewable knowledge ingestion from web, PDF, and paper sources.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work/mnemos", title: "Mnemos — Governed AI Memory Prototype", description: "A governed AI memory system for reviewable knowledge ingestion from web, PDF, and paper sources." });
 
 const chips = ["Next.js", "Node.js", "Postgres", "Playwright", "Docker Compose", "LLM adapters"];
 const capabilities = ["Web / PDF / paper ingestion", "Patch protocol", "Audit logs", "Health checks", "Topic-based notes"];

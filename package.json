@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
+    "check:metadata": "node scripts/check-metadata.mjs",
     "test:smoke": "tsx scripts/ask-smoke-test.ts",
     "test:e2e": "tsx scripts/ask-e2e-test.ts",
     "deploy": "npm run lint && next build && wrangler pages deploy out --project-name vijay-kumaran-portfolio-ask",

@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { TrackVisit } from "@/components/TrackVisit";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { CaseStudyMeta } from "@/components/CaseStudyMeta";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "ChronoQuill — WhatsApp Publishing Automation",
-  description: "A local-first WhatsApp publishing automation service with deterministic scheduling, duplicate prevention, and reviewable operations.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work/chronoquill", title: "ChronoQuill — WhatsApp Publishing Automation", description: "A local-first WhatsApp publishing automation service with deterministic scheduling, duplicate prevention, and reviewable operations." });
 
 const chips = ["Node.js", "TypeScript", "SQLite", "Baileys", "systemd", "CLI"];
 const capabilities = ["Deterministic quote ingestion", "Scheduled publishing", "Duplicate prevention", "Missed-send recovery", "Inbound reply capture", "Reviewable operations"];

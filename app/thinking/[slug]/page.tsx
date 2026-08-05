@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PageShell, SectionLabel } from "@/components/site";
 import { AnimatedArrow, MaskedHeadline, MaskedLine, MotionItem } from "@/components/motion";
 import { posts } from "@/data/posts";
+import { createMetadata } from "@/src/lib/seo";
 
 const SITE_URL = "https://vijay-kumaran-portfolio-ask.pages.dev";
 
@@ -21,21 +22,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
-  return {
-    title: post ? `${post.title} · Vijay Kumaran` : "Thinking · Vijay Kumaran",
-    description: post?.excerpt,
-    openGraph: post ? {
-      title: post.title,
-      description: post.excerpt,
-      type: "article",
-      publishedTime: post.date,
-      tags: post.tags,
-    } : undefined,
-    twitter: post ? {
-      title: post.title,
-      description: post.excerpt,
-    } : undefined,
-  };
+  return createMetadata({
+    path: `/thinking/${slug}`,
+    title: post?.title ?? "Thinking",
+    description: post?.excerpt ?? "Notes on building Cloudflare agents, AI memory systems, and automation that stays reviewable.",
+    ...(post && { article: { publishedTime: post.date, tags: post.tags } }),
+  });
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {

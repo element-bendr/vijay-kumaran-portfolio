@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { TrackVisit } from "@/components/TrackVisit";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { CaseStudyMeta } from "@/components/CaseStudyMeta";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "KPDC / Trifecta — Institutional Publishing System",
-  description: "A multi-site institutional publishing system: three public static websites plus a private admin app with shared packages and staff workflows.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work/kpdc-trifecta", title: "KPDC / Trifecta — Institutional Publishing System", description: "A multi-site institutional publishing system: three public static websites plus a private admin app with shared packages and staff workflows." });
 
 const chips = ["Next.js", "Cloudflare Pages", "R2", "Monorepo", "Admin workflows", "Handover docs"];
 const capabilities = ["Notices and updates", "PDF and gallery management", "Metadata management", "Staff publishing workflows", "Public site + private admin split"];

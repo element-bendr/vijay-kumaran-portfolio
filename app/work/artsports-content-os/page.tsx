@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { TrackVisit } from "@/components/TrackVisit";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { CaseStudyMeta } from "@/components/CaseStudyMeta";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "ArtSports Content OS — Structured Content Automation",
-  description: "A structured content planning and caption-generation workflow with deterministic planning, bounded LLM captions, and human review.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work/artsports-content-os", title: "ArtSports Content OS — Structured Content Automation", description: "A structured content planning and caption-generation workflow with deterministic planning, bounded LLM captions, and human review." });
 
 const chips = ["YAML schemas", "LLM captions", "Validation", "Retries", "Daily briefs"];
 const capabilities = ["Deterministic calendar planning", "Prompt compilation", "Bounded LLM captions", "Deterministic fallbacks", "Validation and retries", "Operator-friendly daily briefs"];

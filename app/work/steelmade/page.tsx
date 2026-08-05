@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { TrackVisit } from "@/components/TrackVisit";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { CaseStudyMeta } from "@/components/CaseStudyMeta";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "SteelMade — Production Furniture Brand Website",
-  description: "A production furniture brand website focused on product/category discovery, brand presentation, and enquiry generation.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work/steelmade", title: "SteelMade — Production Furniture Brand Website", description: "A production furniture brand website focused on product/category discovery, brand presentation, and enquiry generation." });
 
 const chips = ["Next.js", "TypeScript", "Cloudinary", "Netlify", "Cloudflare"];
 const capabilities = ["Product and category discovery", "Brand presentation", "Responsive layout", "Quote / enquiry-focused flows"];

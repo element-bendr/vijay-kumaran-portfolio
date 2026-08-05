@@ -1,0 +1,40 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+
+const root = process.cwd();
+const sitemap = fs.readFileSync(path.join(root, "public/sitemap.xml"), "utf8");
+const siteUrl = "https://vijay-kumaran-portfolio-ask.pages.dev";
+const routes = [...sitemap.matchAll(new RegExp(`<loc>${siteUrl.replaceAll(".", "\\.")}([^<]*)<\\/loc>`, "g"))].map(([, route]) => route || "/");
+
+const linkAttr = (html, attribute) => {
+  const match = html.match(new RegExp(`<link[^>]+${attribute}=["']([^"']+)["'][^>]*>`, "i"));
+  return match?.[1] ?? "";
+};
+const meta = (html, name) => html.match(new RegExp(`<meta[^>]+(?:name|property)=["']${name}["'][^>]+content=["']([^"']*)["']`, "i"))?.[1] ?? "";
+const title = (html) => html.match(/<title>([^<]*)<\/title>/i)?.[1] ?? "";
+
+for (const route of routes) {
+  const file = path.join(root, "out", route === "/" ? "index.html" : `${route.slice(1)}.html`);
+  const html = fs.readFileSync(file, "utf8");
+  const canonical = html.match(/<link[^>]+rel=["']canonical["'][^>]*>/gi) ?? [];
+  assert.equal(canonical.length, 1, `${route}: expected one canonical`);
+  const expectedUrl = `${siteUrl}${route === "/" ? "" : route}`;
+  assert.equal(linkAttr(canonical[0], "href"), expectedUrl, `${route}: canonical`);
+  assert.equal(meta(html, "og:url"), expectedUrl, `${route}: og:url`);
+  assert.equal(meta(html, "og:title"), title(html), `${route}: og:title`);
+  assert.ok(meta(html, "og:description"), `${route}: og:description`);
+  assert.equal(meta(html, "twitter:title"), meta(html, "og:title"), `${route}: twitter:title`);
+  assert.equal(meta(html, "twitter:description"), meta(html, "og:description"), `${route}: twitter:description`);
+  assert.equal(meta(html, "twitter:card"), "summary_large_image", `${route}: twitter:card`);
+  assert.ok(meta(html, "og:image"), `${route}: og:image`);
+  assert.ok(meta(html, "twitter:image"), `${route}: twitter:image`);
+}
+
+for (const file of ["out/thinking/cloudflare-native-news-intelligence-agent.html", "out/thinking/giving-ai-coding-agents-a-governed-memory.html", "out/thinking/what-client-delivery-actually-requires.html", "out/thinking/making-automation-reviewable-not-just-fast.html"]) {
+  const pageTitle = title(fs.readFileSync(path.join(root, file), "utf8"));
+  assert.equal((pageTitle.match(/Vijay Kumaran/g) ?? []).length, 1, `${file}: title brand count`);
+}
+
+assert.match(fs.readFileSync(path.join(root, "out/404.html"), "utf8"), /noindex/i, "404: expected noindex");
+console.log(`metadata check passed for ${routes.length} sitemap routes`);

@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { TrackVisit } from "@/components/TrackVisit";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { CaseStudyMeta } from "@/components/CaseStudyMeta";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "newsharness — News Intelligence Agent",
-  description: "A Cloudflare-native intelligence system for scheduled collection, provider observability, story clustering, and traceable publishing.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work/newsharness", title: "newsharness — News Intelligence Agent", description: "A Cloudflare-native intelligence system for scheduled collection, provider observability, story clustering, and traceable publishing." });
 
 const chips = ["Cloudflare Agents SDK", "Durable Objects", "D1", "R2", "Workers AI", "Evals"];
 const capabilities = ["Scheduled collection", "Provider normalization", "Story clustering", "Article extraction", "Draft generation", "Publishing workflows", "Traceable reporting"];

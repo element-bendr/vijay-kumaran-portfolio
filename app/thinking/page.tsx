@@ -3,11 +3,9 @@ import type { Metadata } from "next";
 import { PageShell, SectionLabel } from "@/components/site";
 import { AnimatedArrow, MaskedHeadline, MaskedLine, MotionItem, MotionSection } from "@/components/motion";
 import { posts } from "@/data/posts";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Thinking · Vijay Kumaran",
-  description: "Notes on building Cloudflare agents, AI memory systems, and automation that stays reviewable.",
-};
+export const metadata: Metadata = createMetadata({ path: "/thinking", title: "Thinking", description: "Notes on building Cloudflare agents, AI memory systems, and automation that stays reviewable." });
 
 export default function ThinkingPage() {
   return <PageShell>

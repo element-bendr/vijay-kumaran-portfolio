@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { MaskedHeadline, MaskedLine, MotionItem } from "@/components/motion";
 import { WorkFilter } from "@/components/WorkFilter";
 import { projects } from "@/data/projects";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Work",
-  description: "A proof index of systems built for websites, publishing workflows, AI automation, and operational clarity.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work", title: "Work", description: "A proof index of systems built for websites, publishing workflows, AI automation, and operational clarity." });
 
 export default function WorkPage() {
   return <PageShell>

@@ -3,11 +3,9 @@ import { ButtonLink, PageShell, SectionLabel } from "@/components/site";
 import { TrackVisit } from "@/components/TrackVisit";
 import { MotionItem, MotionSection } from "@/components/motion";
 import { CaseStudyMeta } from "@/components/CaseStudyMeta";
+import { createMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = {
-  title: "memory-os — AI Coding-Agent Memory System",
-  description: "A governed memory operating system for AI coding agents: Git-reviewed Markdown, GBrain retrieval, Postgres/pgvector, and verification-gated handoffs.",
-};
+export const metadata: Metadata = createMetadata({ path: "/work/memory-os", title: "memory-os — AI Coding-Agent Memory System", description: "A governed memory operating system for AI coding agents: Git-reviewed Markdown, GBrain retrieval, Postgres/pgvector, and verification-gated handoffs." });
 
 const chips = ["Git-reviewed Markdown", "GBrain", "Postgres/pgvector", "Beads task state", "Agent skills", "Verification-gated handoffs"];
 const capabilities = ["Durable project knowledge", "Evidence / date / source / owner rules", "Setup / verify / sync workflows", "Backup / restore workflows", "Verification-gated handoffs"];
