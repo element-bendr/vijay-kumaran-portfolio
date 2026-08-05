@@ -35,6 +35,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const post = posts.find((p) => p.slug === slug);
   if (!post) return <PageShell><div className="bg-dark text-light"><div className="mx-auto max-w-7xl px-6 py-24 sm:px-10 lg:px-16"><h1 className="display text-4xl">Post not found</h1></div></div></PageShell>;
   const html = marked.parse(post.content) as string;
+  const articleUrl = `${SITE_URL}/thinking/${post.slug}`;
   const rel = RELATED[slug] || [];
   return <PageShell>
     <article className="bg-light text-ink"><div className="mx-auto max-w-3xl px-6 py-14 sm:px-10 lg:px-16">
@@ -44,7 +45,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         headline: post.title,
         description: post.excerpt,
         datePublished: post.date,
-        author: { "@id": `${SITE_URL}/#person` },
+        url: articleUrl,
+        mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+        author: { "@type": "Person", "@id": `${SITE_URL}/#person` },
         publisher: { "@id": `${SITE_URL}/#service` },
       }) }} />
       <SectionLabel light>Thinking</SectionLabel><MaskedHeadline className="display mt-6 text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02]"><MaskedLine>{post.title}</MaskedLine></MaskedHeadline><div className="mt-6 flex flex-wrap gap-2 font-mono text-xs uppercase tracking-[.12em]"><span className="text-muted-light">{post.date}</span><span className="text-blue">{post.readingTime}</span>{post.tags.map((tag) => <span key={tag} className="border border-light-line px-2.5 py-1 text-muted-light">{tag}</span>)}</div><div className="mt-10 max-w-none space-y-5 text-base leading-relaxed text-muted-light [&_h2]:display [&_h2]:mt-12 [&_h2]:text-3xl [&_h2]:text-ink [&_strong]:font-semibold [&_strong]:text-ink [&_code]:rounded [&_code]:border [&_code]:border-light-line [&_code]:bg-light [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[.85em] [&_code]:text-blue" dangerouslySetInnerHTML={{ __html: html }} />{rel.length > 0 && <div className="mt-10 border-t border-light-line pt-6"><p className="font-mono text-xs uppercase tracking-[.12em] text-muted-light mb-3">Related projects</p>{rel.map((r) => <a key={r.href} href={r.href} className="inline-block mr-5 font-mono text-sm text-blue hover:underline">{r.name} ↗</a>)}</div>}<div className="mt-8 flex justify-between border-t border-light-line pt-6 font-mono text-xs uppercase tracking-[.12em]"><Link href="/thinking" className="text-blue hover:underline">← All thinking</Link><Link href="/work" className="group text-blue hover:underline">See the work <AnimatedArrow /></Link></div></div></article>
