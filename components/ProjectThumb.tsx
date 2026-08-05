@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 const ALT_TEXT: Record<string, string> = {
   newsharness: "Cloudflare-native daily news intelligence system dashboard",
   "memory-os": "AI coding-agent memory system architecture",
@@ -12,15 +8,20 @@ const ALT_TEXT: Record<string, string> = {
   mnemos: "Governed AI memory prototype interface",
 };
 
+const PROJECT_IMAGES: Record<string, string> = {
+  newsharness: "/projects/newsharness.avif",
+  "kpdc-trifecta": "/projects/kpdc-trifecta.avif",
+  steelmade: "/projects/steelmade.avif",
+};
+
 export function ProjectThumb({ slug }: { slug: string }) {
-  const [error, setError] = useState(false);
-  if (error) return null;
+  const src = PROJECT_IMAGES[slug];
+  if (!src) return null;
   return (
     <img
-      src={`/projects/${slug}.avif`}
-      alt={ALT_TEXT[slug] ?? `${slug} project screenshot`}
-      className="mb-5 w-full border border-dark-line"
-      onError={() => setError(true)}
+      src={src}
+      alt={ALT_TEXT[slug]}
+      className="mb-5 aspect-[1200/630] w-full border border-dark-line object-cover"
     />
   );
 }

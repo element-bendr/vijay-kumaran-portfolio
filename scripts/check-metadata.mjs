@@ -29,6 +29,13 @@ for (const route of routes) {
   assert.equal(meta(html, "twitter:card"), "summary_large_image", `${route}: twitter:card`);
   assert.ok(meta(html, "og:image"), `${route}: og:image`);
   assert.ok(meta(html, "twitter:image"), `${route}: twitter:image`);
+
+  for (const image of html.matchAll(/<img\b[^>]*>/gi)) {
+    const src = image[0].match(/\bsrc=["']([^"']+)["']/i)?.[1];
+    const alt = image[0].match(/\balt=["']([^"']*)["']/i)?.[1];
+    if (src?.startsWith("/")) assert.ok(fs.existsSync(path.join(root, "public", src.slice(1))), `${route}: missing ${src}`);
+    assert.ok(alt, `${route}: image missing alt`);
+  }
 }
 
 for (const file of ["out/thinking/cloudflare-native-news-intelligence-agent.html", "out/thinking/giving-ai-coding-agents-a-governed-memory.html", "out/thinking/what-client-delivery-actually-requires.html", "out/thinking/making-automation-reviewable-not-just-fast.html"]) {
