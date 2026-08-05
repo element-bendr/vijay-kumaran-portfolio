@@ -58,3 +58,13 @@ bd close <id>         # Complete work
 - NEVER say "ready to push when you are" - YOU must push
 - If push fails, resolve and retry until it succeeds
 <!-- END BEADS INTEGRATION -->
+
+<!-- BEGIN CENTRAL MEMORY v:1 -->
+## Shared project memory
+
+- At the start of non-trivial work, run `memory-project ensure "$PWD"`.
+- Query GBrain with the project name, task goal, and relevant subsystem before making decisions that may depend on prior work.
+- Ignore retrieval results from `_review/`, `_drafts/`, `_rejected/`, `_templates/`, `inbox/`, `archive/reviewed/`, `consolidations/`, and `skill-signals/`; they are workflow state, not approved memory.
+- Treat recalled memory as guidance, then verify it against repository code, Git, Beads, logs, or live behavior.
+- Route durable lessons through the central review queue; never write permanent memory or Postgres directly.
+<!-- END CENTRAL MEMORY -->
