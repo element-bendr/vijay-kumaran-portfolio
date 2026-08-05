@@ -6,6 +6,19 @@ const root = process.cwd();
 const sitemap = fs.readFileSync(path.join(root, "public/sitemap.xml"), "utf8");
 const siteUrl = "https://vijay-kumaran-portfolio-ask.pages.dev";
 const routes = [...sitemap.matchAll(new RegExp(`<loc>${siteUrl.replaceAll(".", "\\.")}([^<]*)<\\/loc>`, "g"))].map(([, route]) => route || "/");
+assert.equal(new Set(routes).size, routes.length, "sitemap: duplicate URLs");
+assert.doesNotMatch(sitemap, /<changefreq>|<priority>/, "sitemap: ignored fields");
+for (const [route, date] of Object.entries({
+  "/thinking/cloudflare-native-news-intelligence-agent": "2026-07-15",
+  "/thinking/giving-ai-coding-agents-a-governed-memory": "2026-06-28",
+  "/thinking/what-client-delivery-actually-requires": "2026-06-10",
+  "/thinking/making-automation-reviewable-not-just-fast": "2026-05-20",
+})) assert.match(sitemap, new RegExp(`<loc>${siteUrl.replaceAll(".", "\\.")}${route}<\\/loc><lastmod>${date}<\\/lastmod>`), `sitemap: ${route} lastmod`);
+const generatedRoutes = fs.readdirSync(path.join(root, "out"), { recursive: true })
+  .filter((file) => file.endsWith(".html") && !file.endsWith("404.html") && !file.endsWith("_not-found.html"))
+  .map((file) => file === "index.html" ? "/" : `/${file.slice(0, -5)}`.replaceAll("\\\\", "/"));
+assert.deepEqual([...routes].sort(), [...generatedRoutes].sort(), "sitemap: generated route parity");
+assert.equal(fs.readFileSync(path.join(root, "public/robots.txt"), "utf8").match(new RegExp(`Sitemap: ${siteUrl.replaceAll(".", "\\.")}/sitemap\\.xml`, "g"))?.length, 1, "robots: sitemap URL");
 
 const linkAttr = (html, attribute) => {
   const match = html.match(new RegExp(`<link[^>]+${attribute}=["']([^"']+)["'][^>]*>`, "i"));
