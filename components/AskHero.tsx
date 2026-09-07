@@ -20,13 +20,13 @@ export function AskHero() {
       });
       const data = await res.json();
       if (data.refused) {
-        setAns("I don't have enough to answer that. Try asking about a specific project.");
+        setAns("I don't have enough indexed evidence for that. Try asking about a project, architecture, stack, or verification proof.");
       } else {
         const clipped = data.answer ? data.answer.slice(0, 280) + (data.answer.length > 280 ? "…" : "") : "";
         setAns(clipped);
       }
     } catch {
-      setAns("Can't reach the assistant. Try again shortly.");
+      setAns("Can't reach the evidence assistant. Try again shortly.");
     }
     setLoading(false);
   };
@@ -38,7 +38,7 @@ export function AskHero() {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Ask about a project…"
+            placeholder="Ask about architecture or proof…"
             className="flex-1 border border-white/[0.08] bg-transparent px-3 py-2 text-xs text-muted-dark placeholder:text-muted-dark/40 focus:border-cyan/40 focus:outline-none"
           />
           <button
@@ -53,12 +53,8 @@ export function AskHero() {
         <div className="border border-white/[0.06] p-3">
           <p className="text-xs leading-relaxed text-muted-dark">{ans}</p>
           <div className="mt-2 flex gap-3">
-            <button onClick={() => { setAns(""); setQ(""); }} className="text-[10px] text-cyan/60 hover:text-cyan">
-              Ask another
-            </button>
-            <a href="/#ask" className="text-[10px] text-muted-dark/40 hover:text-cyan">
-              Full Q&A ↓
-            </a>
+            <button onClick={() => { setAns(""); setQ(""); }} className="text-[10px] text-cyan/60 hover:text-cyan">Ask another</button>
+            <a href="/#ask" className="text-[10px] text-muted-dark/40 hover:text-cyan">Full evidence Q&A ↓</a>
           </div>
         </div>
       )}
