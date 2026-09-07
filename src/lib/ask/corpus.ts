@@ -1,5 +1,18 @@
-import { projectKnowledge } from "../../data/projectKnowledge";
+import "server-only";
+
+import { projectKnowledge as baseProjectKnowledge } from "../../data/projectKnowledge";
+import { projectKnowledgeRefresh } from "../../data/projectKnowledgeRefresh";
 import type { AskSource, ProjectKnowledgeRecord } from "./types";
+
+const refreshedIds = new Set(projectKnowledgeRefresh.map((record) => record.id));
+
+// Public portfolio knowledge is curated, not raw GitHub ingestion. Refresh records replace
+// older records with the same stable id and are placed first so current verified evidence
+// has priority when the entire direct corpus is sent to the model.
+const projectKnowledge: ProjectKnowledgeRecord[] = [
+  ...projectKnowledgeRefresh,
+  ...baseProjectKnowledge.filter((record) => !refreshedIds.has(record.id)),
+];
 
 const PROJECT_NAMES: string[] = Array.from(
   new Set(projectKnowledge.map((r) => r.project)),

@@ -19,8 +19,12 @@ const PATH_TO_ROUTE: Record<string, string> = {
   "app/services/page.tsx": "/services",
   "data/services.ts": "/services",
   "data/projects.ts": "/work",
+  "app/work/pcas/page.tsx": "/work/pcas",
   "app/work/newsharness/page.tsx": "/work/newsharness",
+  "app/work/memory-os-autonomy/page.tsx": "/work/memory-os-autonomy",
+  "app/work/little-agent/page.tsx": "/work/little-agent",
   "app/work/memory-os/page.tsx": "/work/memory-os",
+  "app/work/palimpsest/page.tsx": "/work/palimpsest",
   "app/work/kpdc-trifecta/page.tsx": "/work/kpdc-trifecta",
   "app/work/steelmade/page.tsx": "/work/steelmade",
   "app/work/chronoquill/page.tsx": "/work/chronoquill",
@@ -43,10 +47,10 @@ type AskResponse = {
 };
 
 const SUGGESTIONS = [
-  "What proves AI automation experience?",
-  "Explain newsharness simply.",
-  "Which project proves client delivery?",
-  "What does memory-os show?",
+  "What proves agent infrastructure experience?",
+  "How does PCAS govern AI decisions?",
+  "What evidence shows production reliability?",
+  "Compare newsharness and Memory OS Autonomy.",
 ];
 
 const API_URL = "https://vijay-kumaran-portfolio-api.random-planzz.workers.dev";
@@ -118,7 +122,6 @@ export function AskTheWork() {
       const data: AskResponse = await res.json();
 
       if (data.refused) {
-        // ponytail: single auto-retry on refusal — model is non-deterministic, grounded questions are occasionally refused
         if (!retriedRef.current) {
           retriedRef.current = true;
           submit(q);
@@ -158,7 +161,6 @@ export function AskTheWork() {
   return (
     <section id="ask" className="border-b border-light-line bg-light text-ink">
       <div className="relative mx-auto max-w-7xl px-6 py-24 sm:px-10 lg:px-16">
-        {/* ponytail: static decorative SVG — same as original teaser but not interactive */}
         <div aria-hidden className="pointer-events-none absolute right-[8%] top-1/2 hidden -translate-y-1/2 lg:block">
           <svg viewBox="0 0 40 260" className="h-64 w-10 opacity-20" fill="none">
             <path d="M20 8v244" stroke="#2563EB" strokeWidth="1" />
@@ -169,20 +171,15 @@ export function AskTheWork() {
         </div>
 
         <MotionSection className="max-w-2xl">
-          <MotionItem>
-            <SectionLabel light>Ask the work</SectionLabel>
-          </MotionItem>
-          <MotionItem>
-            <h2 className="display mt-6 text-5xl sm:text-6xl">Ask about the work.</h2>
-          </MotionItem>
+          <MotionItem><SectionLabel light>Ask the work</SectionLabel></MotionItem>
+          <MotionItem><h2 className="display mt-6 text-5xl sm:text-6xl">Interrogate the evidence.</h2></MotionItem>
 
           <AnimatePresence mode="wait">
           {state.type === "idle" && (
             <motion.div key="idle" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }}>
               <MotionItem>
                 <p className="mt-6 text-lg leading-relaxed text-muted-light">
-                  Ask focused questions about the projects, stack, and proof behind this portfolio.
-                  Answers are grounded in indexed project case studies and documentation only.
+                  Ask about projects, architecture, test evidence, production controls, stack, client delivery, or how the systems compare. Answers are restricted to the curated public project corpus.
                 </p>
               </MotionItem>
 
@@ -193,7 +190,7 @@ export function AskTheWork() {
                       type="text"
                       value={question}
                       onChange={(e) => setQuestion(e.target.value)}
-                      placeholder="E.g., What proves AI automation experience?"
+                      placeholder="E.g., What proves agent infrastructure experience?"
                       aria-label="Ask the work a question"
                       className="flex-1 border border-light-line bg-white px-4 py-3 font-mono text-sm text-ink placeholder:text-muted-light focus:border-cyan focus:outline-none"
                     />
@@ -211,10 +208,7 @@ export function AskTheWork() {
               <div className="mt-6 flex flex-wrap gap-2">
                 {SUGGESTIONS.map((chip) => (
                   <MotionItem key={chip}>
-                    <button
-                      onClick={() => handleChip(chip)}
-                      className="border border-light-line px-3 py-2 text-left font-mono text-[11px] text-muted-light transition-colors hover:border-cyan/60 hover:text-ink"
-                    >
+                    <button onClick={() => handleChip(chip)} className="border border-light-line px-3 py-2 text-left font-mono text-[11px] text-muted-light transition-colors hover:border-cyan/60 hover:text-ink">
                       {chip}
                     </button>
                   </MotionItem>
@@ -228,13 +222,9 @@ export function AskTheWork() {
               <div className="flex items-center gap-4">
                 <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-cyan" />
                 <span className="font-mono text-sm text-muted-light">Checking the work…</span>
-                <button onClick={cancel} className="ml-auto font-mono text-xs text-muted-light hover:text-ink">
-                  Cancel
-                </button>
+                <button onClick={cancel} className="ml-auto font-mono text-xs text-muted-light hover:text-ink">Cancel</button>
               </div>
-              <p className="mt-4 text-sm italic text-muted-light/70">
-                &ldquo;{question}&rdquo;
-              </p>
+              <p className="mt-4 text-sm italic text-muted-light/70">&ldquo;{question}&rdquo;</p>
             </motion.div>
           )}
 
@@ -250,12 +240,7 @@ export function AskTheWork() {
                 />
               </span>
               {state.sources.length > 0 && (
-                <motion.div
-                  className="mt-6 grid gap-2 sm:grid-cols-2"
-                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
-                  initial="hidden"
-                  animate="show"
-                >
+                <motion.div className="mt-6 grid gap-2 sm:grid-cols-2" variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }} initial="hidden" animate="show">
                   {state.sources.map((s) => {
                     const href = resolveSourceHref(s);
                     const external = href.startsWith("http");
@@ -269,14 +254,10 @@ export function AskTheWork() {
                         className="group flex items-center justify-between gap-3 border border-light-line bg-white px-4 py-3 transition-colors hover:border-cyan/60"
                       >
                         <div className="min-w-0">
-                          <p className="truncate font-mono text-[10px] uppercase tracking-wide text-muted-light">
-                            {s.project}
-                          </p>
+                          <p className="truncate font-mono text-[10px] uppercase tracking-wide text-muted-light">{s.project}</p>
                           <p className="mt-0.5 truncate text-sm text-ink">{s.label}</p>
                         </div>
-                        <span className="shrink-0 font-mono text-xs text-blue transition-transform group-hover:translate-x-0.5">
-                          open ↗
-                        </span>
+                        <span className="shrink-0 font-mono text-xs text-blue transition-transform group-hover:translate-x-0.5">open ↗</span>
                       </motion.a>
                     );
                   })}
@@ -289,36 +270,18 @@ export function AskTheWork() {
               )}
               <div className="mt-5 flex items-center gap-3">
                 <span className="font-mono text-[11px] uppercase tracking-[.1em] text-muted-light">Was this helpful?</span>
-                <button
-                  onClick={() => track("ask_feedback", { question: lastQRef.current, value: "helpful" })}
-                  className="border border-light-line px-3 py-1.5 font-mono text-xs text-muted-light transition-colors hover:border-cyan/60 hover:text-ink"
-                >
-                  Yes
-                </button>
-                <button
-                  onClick={() => track("ask_feedback", { question: lastQRef.current, value: "not_helpful" })}
-                  className="border border-light-line px-3 py-1.5 font-mono text-xs text-muted-light transition-colors hover:border-cyan/60 hover:text-ink"
-                >
-                  No
-                </button>
+                <button onClick={() => track("ask_feedback", { question: lastQRef.current, value: "helpful" })} className="border border-light-line px-3 py-1.5 font-mono text-xs text-muted-light transition-colors hover:border-cyan/60 hover:text-ink">Yes</button>
+                <button onClick={() => track("ask_feedback", { question: lastQRef.current, value: "not_helpful" })} className="border border-light-line px-3 py-1.5 font-mono text-xs text-muted-light transition-colors hover:border-cyan/60 hover:text-ink">No</button>
               </div>
-              <button onClick={reset} className="mt-6 font-mono text-sm tracking-[.02em] text-blue hover:underline">
-                Ask another question <AnimatedArrow />
-              </button>
+              <button onClick={reset} className="mt-6 font-mono text-sm tracking-[.02em] text-blue hover:underline">Ask another question <AnimatedArrow /></button>
             </motion.div>
           )}
 
           {state.type === "refused" && (
             <motion.div key="refused" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }} className="mt-10 border border-light-line bg-white p-6">
-              <p className="text-base leading-relaxed text-muted-light">
-                I don&apos;t have enough indexed evidence to answer that.
-              </p>
-              {state.reason && (
-                <p className="mt-2 font-mono text-xs text-muted-light/50">{state.reason}</p>
-              )}
-              <button onClick={reset} className="mt-4 font-mono text-sm tracking-[.02em] text-blue hover:underline">
-                Ask another question <AnimatedArrow />
-              </button>
+              <p className="text-base leading-relaxed text-muted-light">I don&apos;t have enough indexed evidence to answer that.</p>
+              {state.reason && <p className="mt-2 font-mono text-xs text-muted-light/50">{state.reason}</p>}
+              <button onClick={reset} className="mt-4 font-mono text-sm tracking-[.02em] text-blue hover:underline">Ask another question <AnimatedArrow /></button>
             </motion.div>
           )}
 
@@ -326,12 +289,8 @@ export function AskTheWork() {
             <motion.div key="error" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25, ease: EASE }} className="mt-10 border border-red-200 bg-red-50 p-6">
               <p className="text-base leading-relaxed text-red-700">{state.message}</p>
               <div className="mt-4 flex gap-3">
-                <button onClick={() => submit(question)} className="font-mono text-sm tracking-[.02em] text-red-700 hover:underline">
-                  Retry
-                </button>
-                <button onClick={reset} className="font-mono text-sm tracking-[.02em] text-ink hover:underline">
-                  New question
-                </button>
+                <button onClick={() => submit(question)} className="font-mono text-sm tracking-[.02em] text-red-700 hover:underline">Retry</button>
+                <button onClick={reset} className="font-mono text-sm tracking-[.02em] text-ink hover:underline">New question</button>
               </div>
             </motion.div>
           )}

@@ -9,15 +9,15 @@ const O = "O";
 type Player = typeof X | typeof O | null;
 
 const CELLS: Array<{ title: string; sub: string; href: string; external?: boolean }> = [
-  { title: "newsharness", sub: "Intelligence system", href: "/work/newsharness" },
-  { title: "memory-os", sub: "Agent memory", href: "/work/memory-os" },
-  { title: "KPDC / Trifecta", sub: "Publishing system", href: "/work/kpdc-trifecta" },
-  { title: "SteelMade", sub: "Brand website", href: "/work/steelmade" },
-  { title: "ChronoQuill", sub: "Publishing automation", href: "/work/chronoquill" },
-  { title: "ArtSports Content OS", sub: "Content operations", href: "/work/artsports-content-os" },
-  { title: "Mnemos", sub: "Governed memory", href: "/work/mnemos" },
-  { title: "Book an audit", sub: "→ about", href: "/about#contact" },
-  { title: "Ask the work", sub: "→ ask", href: "/#ask" },
+  { title: "PCAS", sub: "Governed career agent", href: "/work/pcas" },
+  { title: "newsharness", sub: "Claim-evidence intelligence", href: "/work/newsharness" },
+  { title: "Memory OS Autonomy", sub: "Governed autonomy", href: "/work/memory-os-autonomy" },
+  { title: "little-agent", sub: "Governed runtime", href: "/work/little-agent" },
+  { title: "memory-os", sub: "Engineering executor", href: "/work/memory-os" },
+  { title: "Palimpsest", sub: "Verifiable projection", href: "/work/palimpsest" },
+  { title: "KPDC / Trifecta", sub: "Business system", href: "/work/kpdc-trifecta" },
+  { title: "Book an audit", sub: "→ about", href: "/about#audit" },
+  { title: "Ask the work", sub: "→ evidence", href: "/#ask" },
 ];
 
 const lines = [
